@@ -6,14 +6,11 @@ import styled from 'styled-components'
 import { theme } from '../styles/theme'
 import { Button } from '../components/common/Button'
 import { Card, CardIcon } from '../components/common/Card'
-import { Terminal } from '../components/common/Terminal'
 import {
-  Shield,
   Network,
-  Lock,
-  Clock,
-  CheckCircle,
-  Server
+  Code,
+  Shield,
+  Zap
 } from 'lucide-react'
 
 export const Home = () => {
@@ -46,33 +43,22 @@ export const Home = () => {
     }
   }
 
-  const stats = [
-    { value: '4.2M+', label: 'Threats Blocked' },
-    { value: '99.97%', label: 'Detection Rate' },
-    { value: '247', label: 'Active Nodes' }
-  ]
-
-  const modules = [
-    {
-      icon: <Shield />,
-      color: 'cyan',
-      title: 'Threat Detection',
-      description: 'Real-time behavioral analysis and anomaly detection using machine learning algorithms trained on millions of threat indicators.',
-      link: 'Explore Module'
-    },
+  const projects = [
     {
       icon: <Network />,
       color: 'blue',
-      title: 'Network Shield',
-      description: 'Advanced perimeter defense with deep packet inspection and automated response to intrusion attempts.',
-      link: 'Explore Module'
+      title: 'NetVision',
+      description: 'Real-time Network Intelligence & Discovery Dashboard - Advanced network mapping tool with FastAPI backend and React frontend.',
+      tech: 'Python • React • FastAPI',
+      status: 'Latest: v4.2'
     },
     {
-      icon: <Lock />,
-      color: 'orange',
-      title: 'Data Vault',
-      description: 'End-to-end encryption and secure storage with zero-knowledge architecture for maximum data protection.',
-      link: 'Explore Module'
+      icon: <Code />,
+      color: 'cyan',
+      title: 'Coming Soon',
+      description: 'More cybersecurity tools and utilities are in development. Stay tuned for updates.',
+      tech: 'TBA',
+      status: 'In Development'
     }
   ]
 
@@ -103,7 +89,7 @@ export const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Advanced threat detection and autonomous defense systems for the modern security operations center.
+          Open source cybersecurity tools and network utilities for security professionals and enthusiasts.
         </motion.p>
 
         <motion.div
@@ -111,65 +97,85 @@ export const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button className="primary" whileHover={{ scale: 1.05 }}>
+          <Button className="primary" as="a" href="/builds">
             <Shield size={18} />
-            Launch Console
+            View Builds
           </Button>
-          <Button className="secondary" whileHover={{ scale: 1.05 }}>
-            View Documentation
+          <Button className="secondary" as="a" href="https://github.com/LEADRACER" target="_blank" rel="noopener noreferrer">
+            <Code size={18} />
+            GitHub Profile
           </Button>
         </motion.div>
 
         <StatsBar>
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-            >
-              <StatValue>{stat.value}</StatValue>
-              <StatLabel>{stat.label}</StatLabel>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <StatValue>1</StatValue>
+            <StatLabel>Open Source</StatLabel>
+            <StatLabel>Project</StatLabel>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            <StatValue>v4.2</StatValue>
+            <StatLabel>Latest</StatLabel>
+            <StatLabel>Version</StatLabel>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            <StatValue>JS</StatValue>
+            <StatLabel>Primary</StatLabel>
+            <StatLabel>Language</StatLabel>
+          </motion.div>
         </StatsBar>
       </HeroSection>
 
       <Section>
         <SectionHeader>
-          <Label>Core Operations</Label>
-          <Title>Security Modules</Title>
+          <Label>Featured Projects</Label>
+          <Title>Open Source Cybersecurity Tools</Title>
           <Description>
-            Integrated defense systems providing comprehensive protection across all attack vectors.
+            Professional-grade security utilities built for network discovery, vulnerability assessment, and threat intelligence.
           </Description>
         </SectionHeader>
 
         <CardsGrid>
-          {modules.map((module, index) => (
+          {projects.map((project, index) => (
             <motion.div
-              key={module.title}
+              key={project.title}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={itemVariants}
               transition={{ delay: index * 0.2 }}
             >
               <Card>
-                <CardIcon color={module.color}>
-                  {module.icon}
+                <CardIcon color={project.color}>
+                  {project.icon}
                 </CardIcon>
-                <h3>{module.title}</h3>
-                <p>{module.description}</p>
-                <a href="#" className="card-link">
-                  {module.link} <span>→</span>
-                </a>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <ProjectMeta>
+                  <TechStack>{project.tech}</TechStack>
+                  <ProjectStatus>{project.status}</ProjectStatus>
+                </ProjectMeta>
+                {project.title === 'NetVision' && (
+                  <Button className="primary" as="a" href="/builds" style={{ marginTop: '1rem' }}>
+                    <Zap size={16} />
+                    Explore Build
+                  </Button>
+                )}
               </Card>
             </motion.div>
           ))}
         </CardsGrid>
-      </Section>
-
-      <Section>
-        <Terminal />
       </Section>
     </HomeContainer>
   )
@@ -185,7 +191,7 @@ const HeroSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 1.5rem; /* Reduced from 6rem 2rem */
+  padding: 4rem 1.5rem;
   position: relative;
   text-align: center;
 `
@@ -218,12 +224,12 @@ const Badge = styled.div`
 const StatsBar = styled.div`
   display: flex;
   justify-content: center;
-  gap: 3rem; /* Reduced from 5rem */
+  gap: 3rem;
   margin-top: 4rem;
   flex-wrap: wrap;
 `
 
-const StatValue = styled.div
+const StatValue = styled.div`
   font-family: ${theme.fonts.mono};
   font-size: 2.5rem;
   font-weight: 900;
@@ -241,14 +247,14 @@ const StatLabel = styled.div`
 `
 
 const Section = styled.section`
-  padding: 4rem 1.5rem; /* Reduced from 6rem 2rem */
+  padding: 4rem 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
 `
 
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 2.5rem; /* Reduced from 4rem */
+  margin-bottom: 2.5rem;
 `
 
 const Label = styled.span`
@@ -283,7 +289,31 @@ const Description = styled.p`
 const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem; /* Reduced from 1.5rem */
+  gap: 1rem;
+`
+
+const ProjectMeta = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid ${theme.colors.borderSubtle};
+`
+
+const TechStack = styled.div`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.75rem;
+  color: ${theme.colors.accentCyan};
+  letter-spacing: 1px;
+`
+
+const ProjectStatus = styled.div`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.7rem;
+  color: ${theme.colors.textMuted};
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `
 
 const animations = `

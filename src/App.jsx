@@ -3,9 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Navbar } from './components/layout/Navbar'
 import { GridBackground } from './components/layout/GridBackground'
 import { Home } from './pages/Home'
-import { Operations } from './pages/Operations'
-import { Intelligence } from './pages/Intelligence'
-import { Systems } from './pages/Systems'
+import { Builds } from './pages/Builds'
 import { Documentation } from './pages/Documentation'
 import { GlobalStyles } from './styles/GlobalStyles'
 import styled from 'styled-components'
@@ -58,7 +56,7 @@ const App = () => {
               }
             />
             <Route
-              path="/operations"
+              path="/builds"
               element={
                 <motion.div
                   initial="initial"
@@ -67,35 +65,7 @@ const App = () => {
                   variants={pageVariants}
                   transition={pageTransition}
                 >
-                  <Operations />
-                </motion.div>
-              }
-            />
-            <Route
-              path="/intelligence"
-              element={
-                <motion.div
-                  initial="initial"
-                  animate="in"
-                  exit="out"
-                  variants={pageVariants}
-                  transition={pageTransition}
-                >
-                  <Intelligence />
-                </motion.div>
-              }
-            />
-            <Route
-              path="/systems"
-              element={
-                <motion.div
-                  initial="initial"
-                  animate="in"
-                  exit="out"
-                  variants={pageVariants}
-                  transition={pageTransition}
-                >
-                  <Systems />
+                  <Builds />
                 </motion.div>
               }
             />

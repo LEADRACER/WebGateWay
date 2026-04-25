@@ -1,133 +1,145 @@
-# CyberSentinals - Advanced Security Operations Platform
+# CyberSentinals - Open Source Cybersecurity Tools
 
-A sophisticated cybersecurity platform built with React.js featuring a sci-fi inspired interface for security operations, threat intelligence, and infrastructure management.
+A showcase website for open source cybersecurity tools and network utilities, featuring NetVision - a real-time network intelligence and discovery dashboard.
 
-## Features
+## Featured Project: NetVision
 
-- **Multi-Page Architecture**: Home, Operations, Intelligence, Systems, Documentation pages
-- **Sci-Fi Aesthetic**: Dark theme with glowing cyan accents, geometric patterns, and block-style typography
-- **Advanced Animations**: Framer Motion transitions, terminal simulation, particle effects, and scroll reveals
-- **Responsive Design**: Mobile-friendly layout with hamburger menu navigation
-- **Interactive Components**: Live terminal, animated charts, security modules cards
-- **Modular Structure**: Clean separation of concerns with reusable components
+### 🛰️ NetVision v4.2
+**Real-time Network Intelligence & Discovery Dashboard**
+
+NetVision is a high-performance, industrial-grade network mapping tool designed for instant visibility and security awareness. Built with a **FastAPI** backend and a **React** frontend, it provides a seamless, ultra-lightweight experience for discovering devices, services, and vulnerabilities on your local network.
+
+#### ✨ Key Features
+- 🕵️ **Progressive Discovery**: Real-time updates as nodes are found
+- 🛠️ **Scan Profiles**: Quick, Deep, and Security scanning modes
+- 🎨 **Industrial UI**: Professional grey theme with technical grid
+- ⚡ **Ultra-Lightweight**: Zero-animation architecture for maximum speed
+- 📡 **Live WebSockets**: Direct, low-latency data streaming
+
+#### 🚀 Quick Start
+```bash
+# Clone the repository
+git clone https://github.com/LEADRACER/NetVision.git
+cd NetVision
+
+# Run with automated script
+sudo chmod +x run.sh
+sudo ./run.sh
+```
+
+#### 📋 Requirements
+- **Python 3.8+**
+- **Node.js 18+**
+- **Nmap** (for scanning engine)
+
+---
 
 ## Technology Stack
 
-- **Frontend**: React 18, React Router DOM
-- **Styling**: Styled Components
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Build Tool**: Vite
-- **Development**: JavaScript ES6+
+- **Frontend**: React 18, Vite, Styled Components, Framer Motion
+- **Backend**: Vercel Serverless Functions
+- **Styling**: CSS-in-JS with sci-fi aesthetics
+- **Deployment**: Vercel (optimized for serverless)
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── common/           # Reusable UI components (Button, Card, Terminal)
-│   └── layout/           # Layout components (Navbar, GridBackground)
+│   ├── common/           # Reusable UI components
+│   └── layout/           # Layout components (Navbar, Grid)
 ├── pages/                # Page components
-│   ├── Home.jsx
-│   ├── Operations.jsx
-│   ├── Intelligence.jsx
-│   ├── Systems.jsx
-│   └── Documentation.jsx
-├── styles/               # Theme and global styles
-├── App.jsx               # Main App component with routing
-└── main.jsx              # React entry point
+│   ├── Home.jsx         # Landing page with project showcase
+│   ├── Builds.jsx       # Detailed builds/tools page
+│   └── Documentation.jsx # Usage guides and API docs
+├── styles/              # Theme and global styles
+└── App.jsx              # Main routing application
 ```
 
-## Installation
+## Key Features
 
-1. Clone the repository:
+### 🎨 Sci-Fi Design System
+- Dark theme with cyan/blue accent colors
+- Geometric block-style typography
+- Animated grid backgrounds and particle effects
+- Glass-morphism UI elements
+
+### 🛠️ Interactive Build Showcase
+- Detailed project cards with tech stacks
+- Modal dialogs for comprehensive project info
+- Direct GitHub integration with live data
+- Download and source code links
+
+### 📱 Responsive & Accessible
+- Mobile-first design approach
+- Smooth animations and transitions
+- Keyboard navigation support
+- Screen reader compatibility
+
+## Installation & Development
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/LEADRACER/WebGateWay.git
    cd WebGateWay
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. Start development server:
+3. **Start development server:**
    ```bash
    npm run dev
    ```
 
-4. Build for production:
+4. **Build for production:**
    ```bash
    npm run build
    ```
 
-## Pages Overview
+## Deployment
 
-### Home
-- Hero section with system status and statistics
-- Security modules showcase (Threat Detection, Network Shield, Data Vault)
-- Live terminal simulation
+This project is optimized for **Vercel** deployment:
 
-### Operations
-- Security Operations Center dashboard
-- Incident response and vulnerability management
-- Live scan progress monitoring
+- Automatic static optimization
+- Serverless function support for API endpoints
+- Built-in CI/CD with GitHub integration
 
-### Intelligence
-- Real-time threat intelligence feeds
-- IOC database and dark web monitoring
-- Campaign tracking and analysis
+### Vercel Configuration
+The `vercel.json` file includes:
+- SPA routing support
+- Automatic framework detection
+- Optimized build settings
 
-### Systems
-- Infrastructure architecture details
-- Zero Trust Network and High Availability
-- Compliance certifications (SOC 2, ISO 27001, HIPAA, GDPR)
+## Adding New Builds
 
-### Documentation
-- Technical documentation with category filtering
-- Quick start guides and API references
-- Additional resources and community links
+To add a new build/project to the showcase:
 
-## Key Components
-
-### Button
-- Gradient animated buttons with hover effects
-- Primary and secondary variants
-- Sci-fi styling with clipped polygon shapes
-
-### Card
-- Interactive cards with hover animations
-- Gradient border effects on hover
-- Consistent styling across all pages
-
-### Terminal
-- Simulated terminal with command input/output
-- Color-coded output (success, warning, info)
-- Auto-scrolling command simulation
-
-### GridBackground
-- Animated canvas background with grid patterns
-- Floating particle effects
-- Scanning line animation
-
-## Environment Variables
-
-None required for basic functionality.
+1. Update the `builds` array in `src/pages/Builds.jsx`
+2. Include repository information and GitHub API details
+3. Add project description, tech stack, and features
+4. The modal system will automatically display the new build
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch (`git checkout -b feature/NewBuild`)
+3. Add your build to the showcase
+4. Test the build locally
+5. Submit a pull request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. Individual builds maintain their own licenses.
 
-## Acknowledgments
+## Links
 
-- Designed for cybersecurity professionals and security operations centers
-- Inspired by modern SOC platforms and threat intelligence systems
-- Built with performance and accessibility in mind
+- **Live Demo**: [CyberSentinals](https://cybersentinals.vercel.app)
+- **NetVision Repository**: [GitHub](https://github.com/LEADRACER/NetVision)
+- **Portfolio**: [LEADRACER](https://github.com/LEADRACER)
+
+---
+
+*Built for cybersecurity professionals and open source enthusiasts.*
