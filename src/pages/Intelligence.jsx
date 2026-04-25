@@ -160,14 +160,14 @@ const IntelligenceContainer = styled.div`
 `
 
 const Section = styled.section`
-  padding: 6rem 2rem;
+  padding: 4rem 1.5rem; /* Reduced from 6rem 2rem */
   max-width: 1400px;
   margin: 0 auto;
 `
 
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem; /* Reduced from 4rem */
 `
 
 const Label = styled.span`
@@ -202,7 +202,7 @@ const Description = styled.p`
 const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem; /* Reduced from 1.5rem */
 `
 
 const CountBadge = styled.div`

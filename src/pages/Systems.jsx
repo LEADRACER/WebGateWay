@@ -116,14 +116,14 @@ const SystemsContainer = styled.div`
 `
 
 const Section = styled.section`
-  padding: 6rem 2rem;
+  padding: 4rem 1.5rem; /* Reduced from 6rem 2rem */
   max-width: 1400px;
   margin: 0 auto;
 `
 
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem; /* Reduced from 4rem */
 `
 
 const Label = styled.span`
@@ -155,10 +155,10 @@ const Description = styled.p`
   font-size: 1rem;
 `
 
-const CardsGrid = styled.div`
+const CardsGrid = styled.div
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem; /* Reduced from 1.5rem */
 `
 
 const FeaturesList = styled.ul`
@@ -184,13 +184,13 @@ const FeatureItem = styled.li`
 const MetricsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem; /* Reduced from 2rem */
   margin-top: 3rem;
 `
 
 const MetricCard = styled.div`
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem; /* Reduced from 2rem */
   background: ${theme.colors.bgCard};
   border: 1px solid ${theme.colors.borderSubtle};
   border-radius: 4px;
@@ -222,7 +222,7 @@ const ArchitectureDiagram = styled.div`
   background: ${theme.colors.bgCard};
   border: 1px solid ${theme.colors.borderSubtle};
   border-radius: 4px;
-  padding: 3rem;
+  padding: 2.5rem; /* Reduced from 3rem */
   margin-top: 4rem;
   text-align: center;
 `
@@ -245,7 +245,7 @@ const DiagramVisual = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1.5rem; /* Reduced from 2rem */
   padding: 2rem;
 `
 

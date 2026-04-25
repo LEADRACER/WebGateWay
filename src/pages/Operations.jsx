@@ -124,14 +124,14 @@ const OperationsContainer = styled.div`
 `
 
 const Section = styled.section`
-  padding: 6rem 2rem;
+  padding: 4rem 1.5rem; /* Reduced from 6rem 2rem */
   max-width: 1400px;
   margin: 0 auto;
 `
 
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem; /* Reduced from 4rem */
 `
 
 const Label = styled.span`
@@ -166,7 +166,7 @@ const Description = styled.p`
 const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem; /* Reduced from 1.5rem */
 `
 
 const StatusBadge = styled.div`
@@ -186,7 +186,7 @@ const ScanContainer = styled.div`
   background: ${theme.colors.bgCard};
   border: 1px solid ${theme.colors.borderSubtle};
   border-radius: 4px;
-  padding: 2rem;
+  padding: 2rem; /* Reduced from 2.5rem */
   max-width: 800px;
   margin: 0 auto;
 `
@@ -218,14 +218,14 @@ const ProgressText = styled.div`
 const ResultsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
+  gap: 1rem; /* Reduced from 1.5rem */
 `
 
 const ResultCard = styled.div`
   background: ${theme.colors.bgSecondary};
   border: 1px solid ${theme.colors.borderSubtle};
   border-radius: 4px;
-  padding: 1rem;
+  padding: 1rem; /* Reduced from 1.25rem */
   text-align: center;
 `
 
