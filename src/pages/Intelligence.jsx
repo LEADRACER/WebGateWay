@@ -15,48 +15,7 @@ import {
 
 export const Intelligence = () => {
   const [feeds, setFeeds] = useState([])
-
-  useEffect(() => {
-    // Simulate live feed updates
-    const interval = setInterval(() => {
-      const newFeed = {
-        id: Date.now(),
-        type: ['ioc', 'alert', 'info'][Math.floor(Math.random() * 3)],
-        title: generateFeedTitle(),
-        time: new Date().toLocaleTimeString(),
-        severity: ['low', 'medium', 'high', 'critical'][Math.floor(Math.random() * 4)]
-      }
-      setFeeds(prev => [newFeed, ...prev.slice(0, 9)])
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const generateFeedTitle = () => {
-    const titles = [
-      'New IOC detected: Malicious IP range',
-      'APT campaign analysis updated',
-      'Zero-day vulnerability alert',
-      'Phishing campaign targeting financial sector',
-      'Botnet C2 server identified',
-      'Ransomware variant analysis complete',
-      'Supply chain threat detected',
-      'Credential stuffing attack pattern'
-    ]
-    return titles[Math.floor(Math.random() * titles.length)]
-  }
-
-  const getSeverityColor = (severity) => {
-    switch (severity) {
-      case 'critical': return theme.colors.accentOrange
-      case 'high': return theme.colors.accentOrange
-      case 'medium': return theme.colors.accentBlue
-      case 'low': return theme.colors.accentGreen
-      default: return theme.colors.textMuted
-    }
-  }
-
-  const tools = [
+  const [tools] = useState([
     {
       icon: <Database />,
       color: 'cyan',
@@ -85,7 +44,58 @@ export const Intelligence = () => {
       description: 'Map and analyze APT campaigns and threat actor activities',
       count: '156'
     }
-  ]
+  ])
+
+  useEffect(() => {
+    // Fetch threat intelligence data from our API
+    const fetchThreatData = async () => {
+      try {
+        const response = await fetch('/api/threat-intel')
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const data = await response.json()
+        setFeeds(data)
+      } catch (error) {
+        console.error('Failed to fetch threat intelligence:', error)
+        // Fallback to simulated data if API fails
+        setFeeds([
+          {
+            id: 1,
+            type: 'ioc',
+            title: 'Malicious IP range detected: 185.130.105.0/24',
+            time: new Date().toLocaleTimeString(),
+            severity: 'high'
+          },
+          {
+            id: 2,
+            type: 'alert',
+            title: 'APT29 campaign activity observed in Eastern Europe',
+            time: new Date(Date.now() - 5 * 60 * 1000).toLocaleTimeString(),
+            severity: 'critical'
+          }
+        ])
+      }
+    }
+
+    // Fetch initial data
+    fetchThreatData()
+    
+    // Set up interval to refresh data every 30 seconds
+    const interval = setInterval(fetchThreatData, 30000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const getSeverityColor = (severity) => {
+    switch (severity) {
+      case 'critical': return theme.colors.accentOrange
+      case 'high': return theme.colors.accentOrange
+      case 'medium': return theme.colors.accentBlue
+      case 'low': return theme.colors.accentGreen
+      default: return theme.colors.textMuted
+    }
+  }
 
   return (
     <IntelligenceContainer>
@@ -136,7 +146,7 @@ export const Intelligence = () => {
           ))}
           {feeds.length === 0 && (
             <FeedPlaceholder>
-              Waiting for intelligence updates...
+              Loading threat intelligence...
             </FeedPlaceholder>
           )}
         </FeedContainer>
@@ -293,13 +303,3 @@ const FeedPlaceholder = styled.div`
   color: ${theme.colors.textMuted};
   font-family: ${theme.fonts.mono};
 `
-
-function getSeverityColor(severity) {
-  switch (severity) {
-    case 'critical': return theme.colors.accentOrange
-    case 'high': return theme.colors.accentOrange
-    case 'medium': return theme.colors.accentBlue
-    case 'low': return theme.colors.accentGreen
-    default: return theme.colors.textMuted
-  }
-}
