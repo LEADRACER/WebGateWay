@@ -62,8 +62,8 @@ const Nav = styled.nav`
   padding: 1rem 2rem;
   transition: all 0.4s ease;
   background: ${props => props.scrolled
-    ? 'rgba(5, 5, 8, 0.9)'
-    : 'transparent'
+    ? 'rgba(0, 0, 0, 0.95)' // Using bgDeep with higher opacity
+    : 'rgba(0, 0, 0, 0.8)'
   };
   backdrop-filter: ${props => props.scrolled ? 'blur(20px)' : 'none'};
   border-bottom: ${props => props.scrolled
@@ -129,10 +129,11 @@ const NavLinks = styled.div`
     top: 100%;
     left: 0;
     right: 0;
-    background: ${theme.colors.bgSecondary};
+    background: ${theme.colors.grey900}; /* Using darker grey for mobile menu */
+    border: 1px solid ${theme.colors.borderSubtle};
+    border-top: none;
     flex-direction: column;
     padding: 1rem;
-    border-bottom: 1px solid ${theme.colors.borderSubtle};
   }
 `
 

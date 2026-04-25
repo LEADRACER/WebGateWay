@@ -15,10 +15,10 @@ export const Documentation = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   const categories = [
-    { id: 'all', label: 'All Docs', count: 12 },
-    { id: 'getting-started', label: 'Getting Started', count: 3 },
-    { id: 'api', label: 'API Reference', count: 5 },
-    { id: 'security', label: 'Security', count: 4 }
+    { id: 'all', label: 'All Docs', count: 6 },
+    { id: 'getting-started', label: 'Getting Started', count: 2 },
+    { id: 'api', label: 'API Reference', count: 3 },
+    { id: 'security', label: 'Security', count: 1 }
   ]
 
   const documents = [
@@ -84,8 +84,8 @@ export const Documentation = () => {
     }
   ]
 
-  const filteredDocs = selectedCategory === 'all' 
-    ? documents 
+  const filteredDocs = selectedCategory === 'all'
+    ? documents
     : documents.filter(doc => doc.category === selectedCategory)
 
   return (
@@ -185,14 +185,14 @@ const DocumentationContainer = styled.div`
 `
 
 const Section = styled.section`
-  padding: 4rem 1.5rem; /* Reduced from 6rem 2rem */
+  padding: 4rem 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
 `
 
 const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: 2.5rem; /* Reduced from 4rem */
+  margin-bottom: 2.5rem;
 `
 
 const Label = styled.span`
@@ -239,16 +239,16 @@ const CategoryTab = styled.button`
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 0.75rem 1.5rem;
-  background: ${props => props.active 
-    ? 'rgba(0, 229, 199, 0.1)'
+  background: ${props => props.active
+    ? 'rgba(0, 180, 160, 0.1)' // Using darker cyan background
     : 'transparent'
   };
-  color: ${props => props.active 
+  color: ${props => props.active
     ? theme.colors.accentCyan
     : theme.colors.textSecondary
   };
-  border: 1px solid ${props => props.active 
-    ? 'rgba(0, 229, 199, 0.3)'
+  border: 1px solid ${props => props.active
+    ? 'rgba(0, 180, 160, 0.3)' // Using darker cyan border
     : theme.colors.borderSubtle
   };
   border-radius: 4px;
@@ -271,7 +271,7 @@ const TabCount = styled.span`
 const DocsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 1.5rem; /* Reduced from 2rem */
+  gap: 1.5rem;
 `
 
 const DocCard = styled(Card)`
@@ -281,13 +281,13 @@ const DocCard = styled(Card)`
 
 const DocPreview = styled.div`
   height: 160px;
-  background: linear-gradient(135deg, ${theme.colors.bgSecondary}, ${theme.colors.bgCard});
+  background: linear-gradient(135deg, ${theme.colors.grey800}, ${theme.colors.grey900});
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  margin: -1.5rem -1.5rem 1rem -1.5rem; /* Reduced margins */
+  margin: -1.5rem -1.5rem 1rem -1.5rem;
   padding: 1.5rem;
 `
 
@@ -306,7 +306,7 @@ const DocContent = styled.div`
 const DocTag = styled.span`
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: rgba(0, 229, 199, 0.1);
+  background: rgba(0, 180, 160, 0.1); // Using darker cyan background
   color: ${theme.colors.accentCyan};
   font-family: ${theme.fonts.mono};
   font-size: 0.7rem;
@@ -330,7 +330,7 @@ const DocMeta = styled.div`
 const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem; /* Reduced from 1.5rem? Actually keeping 1.5rem but note: we reduced elsewhere */
+  gap: 1.5rem;
 `
 
 const VideoIcon = () => (

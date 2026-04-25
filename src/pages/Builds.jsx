@@ -265,7 +265,7 @@ const BuildIcon = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 8px;
-  background: rgba(77, 124, 255, 0.1);
+  background: rgba(90, 108, 125, 0.1); /* Using darker blue background */
   color: ${theme.colors.accentBlue};
   display: flex;
   align-items: center;
@@ -325,7 +325,7 @@ const TechBadge = styled.span`
   font-family: ${theme.fonts.mono};
   font-size: 0.7rem;
   padding: 0.25rem 0.75rem;
-  background: rgba(0, 229, 199, 0.1);
+  background: rgba(0, 180, 160, 0.1); /* Using darker cyan background */
   color: ${theme.colors.accentCyan};
   border-radius: 4px;
   text-transform: uppercase;
@@ -348,7 +348,7 @@ const Modal = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(5, 5, 8, 0.8);
+  background: rgba(0, 0, 0, 0.9); /* Much darker background */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -357,7 +357,7 @@ const Modal = styled.div`
 `
 
 const ModalContent = styled.div`
-  background: ${theme.colors.bgCard};
+  background: ${theme.colors.grey900}; /* Using darker background */
   border: 1px solid ${theme.colors.borderSubtle};
   border-radius: 4px;
   width: 100%;
@@ -374,13 +374,14 @@ const ModalHeader = styled.div`
   align-items: center;
   gap: 1rem;
   position: relative;
+  background: ${theme.colors.grey900}; /* Using darker background */
 `
 
 const ModalIcon = styled.div`
   width: 64px;
   height: 64px;
   border-radius: 12px;
-  background: rgba(77, 124, 255, 0.1);
+  background: rgba(90, 108, 125, 0.1); /* Using darker blue background */
   color: ${theme.colors.accentBlue};
   display: flex;
   align-items: center;
@@ -425,6 +426,7 @@ const CloseButton = styled.button`
 
 const ModalBody = styled.div`
   padding: 2rem;
+  background: ${theme.colors.grey900}; /* Using darker background */
 `
 
 const ModalSection = styled.div`
@@ -482,7 +484,7 @@ const RequirementItem = styled.li`
 `
 
 const InstallationCode = styled.div`
-  background: ${theme.colors.bgDeep};
+  background: ${theme.colors.bgDeep}; /* Using bgDeep for terminal-like appearance */
   border: 1px solid ${theme.colors.borderSubtle};
   border-radius: 4px;
   padding: 1rem;
@@ -497,4 +499,5 @@ const ModalFooter = styled.div`
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+  background: ${theme.colors.grey900}; /* Using darker background */
 `
