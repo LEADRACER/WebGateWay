@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { theme } from '../styles/theme'
 import { Card, CardIcon } from '../components/common/Card'
 import {
   FileText,
@@ -196,9 +195,9 @@ const SectionHeader = styled.div`
 `
 
 const Label = styled.span`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.75rem;
-  color: ${theme.colors.accentCyan};
+  color: var(--accentCyan);
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -207,118 +206,18 @@ const Label = styled.span`
   background: rgba(0, 212, 170, 0.08);
   border: 1px solid rgba(0, 212, 170, 0.25);
   border-radius: 6px;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
-`
-
-const CategoryTab = styled.button`
-  font-family: ${theme.fonts.mono};
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 0.75rem 1.5rem;
-  background: ${props => props.active
-    ? 'rgba(0, 212, 170, 0.12)'
-    : 'transparent'
-  };
-  color: ${props => props.active
-    ? theme.colors.accentCyan
-    : theme.colors.textSecondary
-  };
-  border: 1px solid ${props => props.active
-    ? 'rgba(0, 212, 170, 0.3)'
-    : theme.colors.borderSubtle
-  };
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
-
-  &:hover {
-    border-color: ${theme.colors.accentCyan};
-    color: ${theme.colors.accentCyan};
-    background: rgba(0, 212, 170, 0.08);
-  }
-`
-
-const TabCount = styled.span`
-  margin-left: 0.5rem;
-  color: ${theme.colors.textMuted};
-  font-size: 0.7rem;
-`
-
-const DocsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 1.5rem;
-`
-
-const DocCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-`
-
-const DocPreview = styled.div`
-  height: 160px;
-  background: linear-gradient(135deg, ${theme.colors.bgSecondary}, ${theme.colors.bgElevated});
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  margin: -1.5rem -1.5rem 1rem -1.5rem;
-  padding: 1.5rem;
-  border-radius: 8px 8px 0 0;
-`
-
-const DocIcon = styled.div`
-  font-size: 3rem;
-  color: ${theme.colors.accentCyan};
-  z-index: 1;
-`
-
-const DocContent = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`
-
-const DocTag = styled.span`
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: rgba(0, 212, 170, 0.12);
-  color: ${theme.colors.accentCyan};
-  font-family: ${theme.fonts.mono};
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  align-self: flex-start;
-  border: 1px solid rgba(0, 212, 170, 0.25);
-  border-radius: 6px;
-`
-
-const DocMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: ${theme.colors.textMuted};
-  font-family: ${theme.fonts.mono};
-  font-size: 0.75rem;
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid ${theme.colors.borderSubtle};
 `
 
 const Title = styled.h2`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 2.5rem;
   font-weight: 900;
   margin-bottom: 1rem;
-  color: ${theme.colors.textPrimary};
+  color: var(--textPrimary);
 `
 
 const Description = styled.p`
-  color: ${theme.colors.textSecondary};
+  color: var(--textSecondary);
   max-width: 600px;
   margin: 0 auto;
   font-size: 1rem;
@@ -327,13 +226,13 @@ const Description = styled.p`
 const CategoryTabs = styled.div`
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
 `
 
 const CategoryTab = styled.button`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -344,28 +243,27 @@ const CategoryTab = styled.button`
     : 'transparent'
   };
   color: ${props => props.active
-    ? theme.colors.accentCyan
-    : theme.colors.textSecondary
+    ? 'var(--accentCyan)'
+    : 'var(--textSecondary)'
   };
   border: 1px solid ${props => props.active
     ? 'rgba(0, 212, 170, 0.3)'
-    : theme.colors.borderSubtle
+    : 'var(--borderSubtle)'
   };
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
 
   &:hover {
-    border-color: ${theme.colors.accentCyan};
-    color: ${theme.colors.accentCyan};
+    border-color: var(--accentCyan);
+    color: var(--accentCyan);
     background: rgba(0, 212, 170, 0.08);
   }
 `
 
 const TabCount = styled.span`
   margin-left: 0.5rem;
-  color: ${theme.colors.textMuted};
+  color: var(--textMuted);
   font-size: 0.7rem;
 `
 
@@ -382,7 +280,7 @@ const DocCard = styled(Card)`
 
 const DocPreview = styled.div`
   height: 160px;
-  background: linear-gradient(135deg, ${theme.colors.grey800}, ${theme.colors.grey900});
+  background: linear-gradient(135deg, var(--bgElevated), var(--bgCard));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,11 +288,12 @@ const DocPreview = styled.div`
   overflow: hidden;
   margin: -1.5rem -1.5rem 1rem -1.5rem;
   padding: 1.5rem;
+  border-radius: 10px 10px 0 0;
 `
 
 const DocIcon = styled.div`
   font-size: 3rem;
-  color: ${theme.colors.accentCyan};
+  color: var(--accentCyan);
   z-index: 1;
 `
 
@@ -408,25 +307,26 @@ const DocTag = styled.span`
   display: inline-block;
   padding: 0.25rem 0.75rem;
   background: rgba(0, 212, 170, 0.12);
-  color: ${theme.colors.accentCyan};
-  font-family: ${theme.fonts.mono};
+  color: var(--accentCyan);
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 1rem;
   align-self: flex-start;
   border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: 6px;
 `
 
 const DocMeta = styled.div`
   display: flex;
   justify-content: space-between;
-  color: ${theme.colors.textMuted};
-  font-family: ${theme.fonts.mono};
+  color: var(--textMuted);
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.75rem;
   margin-top: auto;
   padding-top: 1rem;
-  border-top: 1px solid ${theme.colors.borderSubtle};
+  border-top: 1px solid var(--borderSubtle);
 `
 
 const CardsGrid = styled.div`
@@ -438,6 +338,22 @@ const CardsGrid = styled.div`
 const VideoIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <polygon points="5 3 19 12 5 21 5 3"/>
+  </svg>
+)
+
+const BookIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+  </svg>
+)
+
+const UsersIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
   </svg>
 )
 

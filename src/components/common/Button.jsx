@@ -1,11 +1,10 @@
 import styled from 'styled-components'
-import { theme } from '../../styles/theme'
 import { motion } from 'framer-motion'
 
 export const Button = styled(motion.button)`
   padding: 1rem 2.5rem;
   border-radius: 8px;
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -35,28 +34,29 @@ export const Button = styled(motion.button)`
   }
 
   &.primary {
-    background: linear-gradient(135deg, ${theme.colors.accentCyan}, ${theme.colors.accentBlue});
-    color: ${theme.colors.bgDeep};
+    background: linear-gradient(135deg, var(--accentCyan), var(--accentBlue));
+    color: var(--bgDeep);
     clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
-    box-shadow: 0 4px 20px rgba(0, 212, 170, 0.2);
+    box-shadow: 0 4px 20px var(--glowCyan);
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 40px ${theme.colors.glowCyan};
+      box-shadow: 0 12px 40px var(--glowCyan);
     }
   }
 
   &.secondary {
     background: transparent;
-    color: ${theme.colors.textPrimary};
-    border: 1px solid ${theme.colors.borderActive};
+    color: var(--textPrimary);
+    border: 1px solid var(--borderActive);
     clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
 
     &:hover {
-      border-color: ${theme.colors.accentCyan};
-      color: ${theme.colors.accentCyan};
+      border-color: var(--accentCyan);
+      color: var(--accentCyan);
       background: rgba(0, 212, 170, 0.08);
       box-shadow: 0 0 25px rgba(0, 212, 170, 0.15);
     }
   }
 `
+

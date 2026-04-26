@@ -1,5 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import { ThemeProvider as ContextProvider, useTheme } from './context/ThemeContext'
 import { Navbar } from './components/layout/Navbar'
 import { GridBackground } from './components/layout/GridBackground'
 import { Home } from './pages/Home'
@@ -7,24 +9,15 @@ import { Builds } from './pages/Builds'
 import { Documentation } from './pages/Documentation'
 import { GlobalStyles } from './styles/GlobalStyles'
 import styled from 'styled-components'
-import { theme } from './styles/theme'
 
-const App = () => {
+const AppContent = () => {
+  const { theme } = useTheme()
   const location = useLocation()
 
   const pageVariants = {
-    initial: {
-      opacity: 0,
-      scale: 0.98
-    },
-    in: {
-      opacity: 1,
-      scale: 1
-    },
-    out: {
-      opacity: 0,
-      scale: 1.02
-    }
+    initial: { opacity: 0, scale: 0.98 },
+    in: { opacity: 1, scale: 1 },
+    out: { opacity: 0, scale: 1.02 }
   }
 
   const pageTransition = {
@@ -34,7 +27,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <StyledThemeProvider theme={theme}>
       <GlobalStyles />
       <AppContainer>
         <GridBackground />
@@ -44,13 +37,7 @@ const App = () => {
             <Route
               path="/"
               element={
-                <motion.div
-                  initial="initial"
-                  animate="in"
-                  exit="out"
-                  variants={pageVariants}
-                  transition={pageTransition}
-                >
+                <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
                   <Home />
                 </motion.div>
               }
@@ -58,13 +45,7 @@ const App = () => {
             <Route
               path="/builds"
               element={
-                <motion.div
-                  initial="initial"
-                  animate="in"
-                  exit="out"
-                  variants={pageVariants}
-                  transition={pageTransition}
-                >
+                <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
                   <Builds />
                 </motion.div>
               }
@@ -72,13 +53,7 @@ const App = () => {
             <Route
               path="/docs"
               element={
-                <motion.div
-                  initial="initial"
-                  animate="in"
-                  exit="out"
-                  variants={pageVariants}
-                  transition={pageTransition}
-                >
+                <motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
                   <Documentation />
                 </motion.div>
               }
@@ -86,7 +61,15 @@ const App = () => {
           </Routes>
         </AnimatePresence>
       </AppContainer>
-    </>
+    </StyledThemeProvider>
+  )
+}
+
+const App = () => {
+  return (
+    <ContextProvider>
+      <AppContent />
+    </ContextProvider>
   )
 }
 
@@ -97,3 +80,4 @@ const AppContainer = styled.div`
 `
 
 export default App
+

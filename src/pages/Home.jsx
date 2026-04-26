@@ -3,7 +3,6 @@ import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import styled from 'styled-components'
-import { theme } from '../styles/theme'
 import { Button } from '../components/common/Button'
 import { Card, CardIcon } from '../components/common/Card'
 import {
@@ -204,9 +203,9 @@ const Badge = styled.div`
   background: rgba(0, 212, 170, 0.1);
   border: 1px solid rgba(0, 212, 170, 0.3);
   border-radius: 8px;
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.8rem;
-  color: ${theme.colors.accentCyan};
+  color: var(--accentCyan);
   margin-bottom: 3rem;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -226,6 +225,39 @@ const Badge = styled.div`
   }
 `
 
+const mH1 = styled(motion.h1)`
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: var(--textPrimary);
+
+  span {
+    color: var(--accentCyan);
+    text-shadow: 0 0 40px var(--glowCyan);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`
+
+const mP = styled(motion.p)`
+  color: var(--textSecondary);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+`
+
+const mDiv = styled(motion.div)`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+`
+
 const StatsBar = styled.div`
   display: flex;
   justify-content: center;
@@ -240,18 +272,18 @@ const StatsBar = styled.div`
 `
 
 const StatValue = styled.div`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 3rem;
   font-weight: 900;
-  color: ${theme.colors.accentCyan};
+  color: var(--accentCyan);
   line-height: 1;
-  text-shadow: 0 0 25px rgba(0, 212, 170, 0.3);
+  text-shadow: 0 0 25px var(--glowCyan);
 `
 
 const StatLabel = styled.div`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
-  color: ${theme.colors.textMuted};
+  color: var(--textMuted);
   margin-top: 0.5rem;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -269,9 +301,9 @@ const SectionHeader = styled.div`
 `
 
 const Label = styled.span`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.75rem;
-  color: ${theme.colors.accentCyan};
+  color: var(--accentCyan);
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -280,30 +312,18 @@ const Label = styled.span`
   background: rgba(0, 212, 170, 0.08);
   border: 1px solid rgba(0, 212, 170, 0.25);
   border-radius: 6px;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
-`
-
-const animations = `
-  @keyframes statusPulse {
-    0%, 100% { 
-      box-shadow: 0 0 20px rgba(0, 212, 170, 0.2), 0 0 40px rgba(0, 212, 170, 0.1);
-    }
-    50% { 
-      box-shadow: 0 0 30px rgba(0, 212, 170, 0.3), 0 0 60px rgba(0, 212, 170, 0.15);
-    }
-  }
 `
 
 const Title = styled.h2`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 2.5rem;
   font-weight: 900;
   margin-bottom: 1rem;
-  color: ${theme.colors.textPrimary};
+  color: var(--textPrimary);
 `
 
 const Description = styled.p`
-  color: ${theme.colors.textSecondary};
+  color: var(--textSecondary);
   max-width: 600px;
   margin: 0 auto;
   font-size: 1rem;
@@ -312,7 +332,7 @@ const Description = styled.p`
 const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
 `
 
 const ProjectMeta = styled.div`
@@ -321,20 +341,20 @@ const ProjectMeta = styled.div`
   align-items: center;
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid ${theme.colors.borderSubtle};
+  border-top: 1px solid var(--borderSubtle);
 `
 
 const TechStack = styled.div`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.75rem;
-  color: ${theme.colors.accentCyan};
+  color: var(--accentCyan);
   letter-spacing: 1px;
 `
 
 const ProjectStatus = styled.div`
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
-  color: ${theme.colors.textMuted};
+  color: var(--textMuted);
   text-transform: uppercase;
   letter-spacing: 1px;
 `
