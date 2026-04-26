@@ -1,17 +1,24 @@
+import { useEffect, useRef } from 'react'
+import styled from 'styled-components'
+
 export const GridBackground = () => {
   const canvasRef = useRef(null)
+  const requestRef = useRef(null)
+  const timeRef = useRef(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
     const ctx = canvas.getContext('2d')
-    let animationId = null
-    let time = 0
+    let resizeTimeout
 
     const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }, 150)
     }
 
     const draw = () => {
@@ -37,7 +44,7 @@ export const GridBackground = () => {
       }
 
       // Draw animated scan line with bright cyan glow
-      const scanY = (time * 0.5) % canvas.height
+      const scanY = (timeRef.current * 0.5) % canvas.height
       const gradient = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50)
       gradient.addColorStop(0, 'transparent')
       gradient.addColorStop(0.5, 'rgba(0, 212, 170, 0.25)')
@@ -50,12 +57,12 @@ export const GridBackground = () => {
       ctx.lineTo(canvas.width, scanY)
       ctx.stroke()
 
-      // Draw particles with cyan glow
-      const particleCount = 30
+      // Draw fewer particles for better performance (30 → 15)
+      const particleCount = 15
       for (let i = 0; i < particleCount; i++) {
-        const x = (Math.sin(time * 0.01 + i * 0.5) * 0.5 + 0.5) * canvas.width
-        const y = (Math.cos(time * 0.01 + i * 0.3) * 0.5 + 0.5) * canvas.height
-        const radius = Math.sin(time * 0.02 + i) * 1 + 1.5
+        const x = (Math.sin(timeRef.current * 0.01 + i * 0.5) * 0.5 + 0.5) * canvas.width
+        const y = (Math.cos(timeRef.current * 0.01 + i * 0.3) * 0.5 + 0.5) * canvas.height
+        const radius = Math.sin(timeRef.current * 0.02 + i) * 1 + 1.5
 
         ctx.beginPath()
         ctx.arc(x, y, Math.max(0.5, radius), 0, Math.PI * 2)
@@ -63,17 +70,31 @@ export const GridBackground = () => {
         ctx.fill()
       }
 
-      time++
-      animationId = requestAnimationFrame(draw)
+      timeRef.current++
+      requestRef.current = requestAnimationFrame(draw)
     }
 
     resize()
     draw()
 
+    // Pause animation when tab is not visible
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(requestRef.current)
+      } else {
+        draw()
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
     window.addEventListener('resize', resize)
+
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
       window.removeEventListener('resize', resize)
-      if (animationId) cancelAnimationFrame(animationId)
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current)
+      }
     }
   }, [])
 
@@ -88,4 +109,6 @@ const Canvas = styled.canvas`
   height: 100%;
   pointer-events: none;
   z-index: 0;
+  opacity: 0.6;
+  will-change: contents;
 `
