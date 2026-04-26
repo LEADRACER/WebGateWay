@@ -16,59 +16,35 @@ import {
   Tag
 } from 'lucide-react'
 
-export const Builds = memo(() => {
-  const [selectedBuild, setSelectedBuild] = useState(null)
-
-  const handleBuildClick = useCallback((build) => {
-    setSelectedBuild(build)
-  }, [])
-
-  const handleCloseModal = useCallback(() => {
-    setSelectedBuild(null)
-  }, [])
-
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        handleCloseModal()
-      }
-    }
-
-    if (selectedBuild) {
-      document.addEventListener('keydown', handleEscape)
-      return () => document.removeEventListener('keydown', handleEscape)
-    }
-  }, [selectedBuild, handleCloseModal])
-
-   const builds = [
-     {
-       id: 'netvision',
-       name: 'NetVision',
-       version: 'v4.3.0',
-       releaseTag: 'v4.3.0',
-       releaseUrl: 'https://github.com/LEADRACER/NetVision/releases/tag/v4.3.0',
-       description: 'Real-time Network Intelligence & Discovery Dashboard - A high-performance network mapping tool designed for instant visibility and security awareness.',
-       longDescription: 'NetVision is a high-performance, industrial-grade network mapping tool designed for instant visibility and security awareness. Built with a FastAPI backend and a React frontend, it provides a seamless, ultra-lightweight experience for discovering devices, services, and vulnerabilities on your local network.',
-       techStack: ['Python', 'FastAPI', 'React', 'Nmap', 'WebSockets', 'Scapy'],
-       features: [
-         'Progressive Discovery with real-time updates',
-         'Multiple scan profiles (Quick, Deep, Security)',
-         'Industrial UI with neutral grey palette',
-         'Ultra-lightweight zero-animation architecture',
-         'Live WebSockets for low-latency data streaming',
-         'Advanced vulnerability scanning using Nmap scripts',
-         'Multi-subnet scanning (ALL SUBNETS mode)',
-         'Configurable scan durations (30s, 1min)',
-         'Hop-based router discovery (experimental)'
-       ],
-       github: 'https://github.com/LEADRACER/NetVision',
-       stars: 0,
-       language: 'JavaScript',
-       lastUpdated: '2026-04-24',
-       requirements: ['Python 3.8+', 'Node.js 18+', 'Nmap', 'Tshark'],
-       installation: 'Clone repository and run sudo ./run.sh',
-       releaseDate: '2026-04-25',
-       releaseNotes: `# 🌐 NetVision v4.3.0 — Multi-Subnet & Hop-Based Scanning
+const builds = [
+  {
+    id: 'netvision',
+    name: 'NetVision',
+    version: 'v4.3.0',
+    releaseTag: 'v4.3.0',
+    releaseUrl: 'https://github.com/LEADRACER/NetVision/releases/tag/v4.3.0',
+    description: 'Real-time Network Intelligence & Discovery Dashboard - A high-performance network mapping tool designed for instant visibility and security awareness.',
+    longDescription: 'NetVision is a high-performance, industrial-grade network mapping tool designed for instant visibility and security awareness. Built with a FastAPI backend and a React frontend, it provides a seamless, ultra-lightweight experience for discovering devices, services, and vulnerabilities on your local network.',
+    techStack: ['Python', 'FastAPI', 'React', 'Nmap', 'WebSockets', 'Scapy'],
+    features: [
+      'Progressive Discovery with real-time updates',
+      'Multiple scan profiles (Quick, Deep, Security)',
+      'Industrial UI with neutral grey palette',
+      'Ultra-lightweight zero-animation architecture',
+      'Live WebSockets for low-latency data streaming',
+      'Advanced vulnerability scanning using Nmap scripts',
+      'Multi-subnet scanning (ALL SUBNETS mode)',
+      'Configurable scan durations (30s, 1min)',
+      'Hop-based router discovery (experimental)'
+    ],
+    github: 'https://github.com/LEADRACER/NetVision',
+    stars: 0,
+    language: 'JavaScript',
+    lastUpdated: '2026-04-24',
+    requirements: ['Python 3.8+', 'Node.js 18+', 'Nmap', 'Tshark'],
+    installation: 'Clone repository and run sudo ./run.sh',
+    releaseDate: '2026-04-25',
+    releaseNotes: `# 🌐 NetVision v4.3.0 — Multi-Subnet & Hop-Based Scanning
 
 ## 🚀 What's New
 This major update adds **multi-subnet scanning**, **configurable scan durations**, and experimental **hop-based router discovery** to NetVision.
@@ -93,8 +69,32 @@ This major update adds **multi-subnet scanning**, **configurable scan durations*
 - Animated scan progress bar
 - Improved device cards with port badges
 - Enhanced details overlay (480px width)`
-     }
-   ]
+  }
+]
+
+export const Builds = memo(() => {
+  const [selectedBuild, setSelectedBuild] = useState(null)
+
+  const handleBuildClick = useCallback((build) => {
+    setSelectedBuild(build)
+  }, [])
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedBuild(null)
+  }, [])
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        handleCloseModal()
+      }
+    }
+
+    if (selectedBuild) {
+      document.addEventListener('keydown', handleEscape)
+      return () => document.removeEventListener('keydown', handleEscape)
+    }
+  }, [selectedBuild, handleCloseModal])
 
   return (
     <BuildsContainer>
@@ -449,15 +449,6 @@ const TechBadge = styled.span`
   &:hover {
     background: var(--accentCyan-18);
     border-color: var(--accentCyan);
-  }
-`
-
-const BuildActions = styled.div`
-  display: flex;
-  gap: 0.75rem;
-
-  @media (max-width: 480px) {
-    flex-direction: column;
   }
 `
 
