@@ -292,8 +292,8 @@ const Label = styled.span`
   margin-bottom: 1.5rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(0, 212, 170, 0.08);
-  border: 1px solid rgba(0, 212, 170, 0.25);
+  background: var(--accentCyan-08);
+  border: 1px solid var(--accentCyan-25);
   border-radius: 6px;
 `
 
@@ -346,8 +346,8 @@ const BuildIcon = styled.div`
   width: 52px;
   height: 52px;
   border-radius: 12px;
-  background: rgba(0, 212, 170, 0.12);
-  border: 1px solid rgba(0, 212, 170, 0.25);
+  background: var(--accentCyan-12);
+  border: 1px solid var(--accentCyan-25);
   color: var(--accentCyan);
   display: flex;
   align-items: center;
@@ -356,7 +356,7 @@ const BuildIcon = styled.div`
   transition: all 0.3s ease;
 
   ${BuildCard}:hover & {
-    background: rgba(0, 212, 170, 0.18);
+    background: var(--accentCyan-18);
     border-color: var(--accentCyan);
     transform: scale(1.05);
   }
@@ -413,10 +413,10 @@ const VersionBadge = styled.span`
   font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
-  background: rgba(0, 212, 170, 0.15);
+  background: var(--accentCyan-15);
   color: var(--accentCyan);
   border-radius: 6px;
-  border: 1px solid rgba(0, 212, 170, 0.3);
+  border: 1px solid var(--accentCyan-30);
   letter-spacing: 0.5px;
 `
 
@@ -438,16 +438,16 @@ const TechBadge = styled.span`
   font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
   padding: 0.25rem 0.75rem;
-  background: rgba(0, 212, 170, 0.12);
+  background: var(--accentCyan-12);
   color: var(--accentCyan);
   border-radius: 6px;
-  border: 1px solid rgba(0, 212, 170, 0.2);
+  border: 1px solid var(--accentCyan-20);
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.2s ease;
 
   &:hover {
-    background: rgba(0, 212, 170, 0.18);
+    background: var(--accentCyan-18);
     border-color: var(--accentCyan);
   }
 `
@@ -507,8 +507,8 @@ const ModalIcon = styled.div`
   width: 64px;
   height: 64px;
   border-radius: 12px;
-  background: rgba(0, 212, 170, 0.12);
-  border: 1px solid rgba(0, 212, 170, 0.3);
+  background: var(--accentCyan-12);
+  border: 1px solid var(--accentCyan-30);
   color: var(--accentCyan);
   display: flex;
   align-items: center;
@@ -517,7 +517,7 @@ const ModalIcon = styled.div`
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(0, 212, 170, 0.18);
+    background: var(--accentCyan-18);
     border-color: var(--accentCyan);
     transform: scale(1.05);
   }
@@ -657,8 +657,8 @@ const ModalFooter = styled.div`
 `
 
 const ReleaseInfo = styled.div`
-  background: rgba(0, 212, 170, 0.08);
-  border: 1px solid rgba(0, 212, 170, 0.25);
+  background: var(--accentCyan-08);
+  border: 1px solid var(--accentCyan-25);
   border-radius: 8px;
   padding: 1.25rem;
   margin-bottom: 1rem;

@@ -203,8 +203,8 @@ const Label = styled.span`
   margin-bottom: 1.5rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(0, 212, 170, 0.08);
-  border: 1px solid rgba(0, 212, 170, 0.25);
+  background: var(--accentCyan-08);
+  border: 1px solid var(--accentCyan-25);
   border-radius: 6px;
 `
 
@@ -239,7 +239,7 @@ const CategoryTab = styled.button`
   text-transform: uppercase;
   padding: 0.75rem 1.5rem;
   background: ${props => props.active
-    ? 'rgba(0, 212, 170, 0.12)'
+    ? 'var(--accentCyan-12)'
     : 'transparent'
   };
   color: ${props => props.active
@@ -247,7 +247,7 @@ const CategoryTab = styled.button`
     : 'var(--textSecondary)'
   };
   border: 1px solid ${props => props.active
-    ? 'rgba(0, 212, 170, 0.3)'
+    ? 'var(--accentCyan-30)'
     : 'var(--borderSubtle)'
   };
   border-radius: 8px;
@@ -257,7 +257,7 @@ const CategoryTab = styled.button`
   &:hover {
     border-color: var(--accentCyan);
     color: var(--accentCyan);
-    background: rgba(0, 212, 170, 0.08);
+    background: var(--accentCyan-08);
   }
 `
 
@@ -306,7 +306,7 @@ const DocContent = styled.div`
 const DocTag = styled.span`
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: rgba(0, 212, 170, 0.12);
+  background: var(--accentCyan-12);
   color: var(--accentCyan);
   font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
@@ -314,7 +314,7 @@ const DocTag = styled.span`
   text-transform: uppercase;
   margin-bottom: 1rem;
   align-self: flex-start;
-  border: 1px solid rgba(0, 212, 170, 0.25);
+  border: 1px solid var(--accentCyan-25);
   border-radius: 6px;
 `
 

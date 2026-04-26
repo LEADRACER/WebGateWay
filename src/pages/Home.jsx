@@ -200,8 +200,8 @@ const Badge = styled.div`
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(0, 212, 170, 0.1);
-  border: 1px solid rgba(0, 212, 170, 0.3);
+  background: var(--accentCyan-10);
+  border: 1px solid var(--accentCyan-30);
   border-radius: 8px;
   font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.8rem;
@@ -209,7 +209,7 @@ const Badge = styled.div`
   margin-bottom: 3rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  box-shadow: 0 0 30px rgba(0, 212, 170, 0.1);
+  box-shadow: 0 0 30px var(--accentCyan-10);
   transition: all 0.3s ease;
 
   span {
@@ -221,7 +221,7 @@ const Badge = styled.div`
   }
 
   &:hover {
-    box-shadow: 0 0 40px rgba(0, 212, 170, 0.2);
+    box-shadow: 0 0 40px var(--accentCyan-20);
   }
 `
 
@@ -266,7 +266,7 @@ const StatsBar = styled.div`
   flex-wrap: wrap;
   padding: 2rem;
   background: rgba(0, 212, 170, 0.06);
-  border: 1px solid rgba(0, 212, 170, 0.15);
+  border: 1px solid var(--accentCyan-15);
   border-radius: 12px;
   backdrop-filter: blur(12px);
 `
@@ -309,8 +309,8 @@ const Label = styled.span`
   margin-bottom: 1.5rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(0, 212, 170, 0.08);
-  border: 1px solid rgba(0, 212, 170, 0.25);
+  background: var(--accentCyan-08);
+  border: 1px solid var(--accentCyan-25);
   border-radius: 6px;
 `
 
@@ -362,10 +362,10 @@ const ProjectStatus = styled.div`
 const animations = `
   @keyframes statusPulse {
     0%, 100% { 
-      box-shadow: 0 0 20px rgba(0, 212, 170, 0.2), 0 0 40px rgba(0, 212, 170, 0.1);
+      box-shadow: 0 0 20px var(--accentCyan-20), 0 0 40px var(--accentCyan-10);
     }
     50% { 
-      box-shadow: 0 0 30px rgba(0, 212, 170, 0.3), 0 0 60px rgba(0, 212, 170, 0.15);
+      box-shadow: 0 0 30px var(--accentCyan-30), 0 0 60px var(--accentCyan-15);
     }
   }
 `
