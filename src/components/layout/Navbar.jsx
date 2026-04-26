@@ -231,7 +231,7 @@ const Logo = styled(NavLink)`
   .logo-block {
     width: 48px;
     height: 48px;
-    background: linear-gradient(135deg, ${theme.colors.accentCyan}, ${theme.colors.accentBlue});
+    background: linear-gradient(135deg, var(--accentCyan), var(--accentBlue));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,31 +240,31 @@ const Logo = styled(NavLink)`
     transition: all 0.3s ease;
 
     &:hover {
-      border-color: ${theme.colors.accentCyan};
-      box-shadow: 0 0 30px rgba(0, 212, 170, 0.2);
+      border-color: var(--accentCyan);
+      box-shadow: 0 0 30px var(--glowCyan);
     }
 
     span {
       position: relative;
-      font-family: ${theme.fonts.mono};
+      font-family: 'SF Mono', 'Fira Code', monospace;
       font-weight: 900;
       font-size: 1.2rem;
-      color: ${theme.colors.textPrimary};
-      text-shadow: 0 0 20px ${theme.colors.glowCyan};
+      color: var(--textPrimary);
+      text-shadow: 0 0 20px var(--glowCyan);
     }
   }
 
   .logo-text {
-    font-family: ${theme.fonts.mono};
+    font-family: 'SF Mono', 'Fira Code', monospace;
     font-weight: 900;
     font-size: 1.5rem;
     letter-spacing: 4px;
-    color: ${theme.colors.textPrimary};
+    color: var(--textPrimary);
     text-transform: uppercase;
 
     span {
-      color: ${theme.colors.accentCyan};
-      text-shadow: 0 0 25px ${theme.colors.glowCyan};
+      color: var(--accentCyan);
+      text-shadow: 0 0 25px var(--glowCyan);
     }
   }
 `
@@ -279,8 +279,8 @@ const NavLinks = styled.div`
     top: 100%;
     left: 0;
     right: 0;
-    background: ${theme.colors.grey800};
-    border: 1px solid ${theme.colors.borderSubtle};
+    background: var(--bgSecondary);
+    border: 1px solid var(--borderSubtle);
     border-top: none;
     flex-direction: column;
     padding: 1rem;
@@ -288,10 +288,10 @@ const NavLinks = styled.div`
 `
 
 const NavItem = styled(NavLink)`
-  color: ${theme.colors.textSecondary};
+  color: var(--textSecondary);
   text-decoration: none;
   padding: 0.6rem 1.2rem;
-  font-family: ${theme.fonts.mono};
+  font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -309,13 +309,13 @@ const NavItem = styled(NavLink)`
     top: 50%;
     width: 0;
     height: 2px;
-    background: ${theme.colors.accentCyan};
+    background: var(--accentCyan);
     transition: width 0.3s ease;
     transform: translateY(-50%);
   }
 
   &:hover {
-    color: ${theme.colors.accentCyan};
+    color: var(--accentCyan);
   }
 
   &:hover::before {
@@ -323,7 +323,7 @@ const NavItem = styled(NavLink)`
   }
 
   &.active {
-    color: ${theme.colors.accentCyan};
+    color: var(--accentCyan);
   }
 
   &.active::before {
@@ -334,8 +334,8 @@ const NavItem = styled(NavLink)`
 const MobileMenuBtn = styled.button`
   display: none;
   background: transparent;
-  border: 1px solid ${theme.colors.borderActive};
-  color: ${theme.colors.textPrimary};
+  border: 1px solid var(--borderActive);
+  color: var(--textPrimary);
   padding: 0.5rem 1rem;
   cursor: pointer;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
@@ -345,8 +345,8 @@ const MobileMenuBtn = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: ${theme.colors.accentCyan};
-    color: ${theme.colors.accentCyan};
+    border-color: var(--accentCyan);
+    color: var(--accentCyan);
     background: rgba(0, 212, 170, 0.08);
   }
 
