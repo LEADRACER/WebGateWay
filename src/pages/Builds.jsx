@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 import styled from 'styled-components'
+import { motion, AnimatePresence } from 'framer-motion'
 import { theme } from '../styles/theme'
 import { Card, CardIcon } from '../components/common/Card'
 import { Button } from '../components/common/Button'
@@ -11,45 +12,99 @@ import {
   Code,
   Shield,
   Zap,
-  Eye
+  Eye,
+  Calendar,
+  Tag
 } from 'lucide-react'
 
-export const Builds = () => {
+export const Builds = memo(() => {
   const [selectedBuild, setSelectedBuild] = useState(null)
 
-  const builds = [
-    {
-      id: 'netvision',
-      name: 'NetVision',
-      version: 'v4.2',
-      description: 'Real-time Network Intelligence & Discovery Dashboard - A high-performance network mapping tool designed for instant visibility and security awareness.',
-      longDescription: 'NetVision is a high-performance, industrial-grade network mapping tool designed for instant visibility and security awareness. Built with a FastAPI backend and a React frontend, it provides a seamless, ultra-lightweight experience for discovering devices, services, and vulnerabilities on your local network.',
-      techStack: ['Python', 'FastAPI', 'React', 'Nmap', 'WebSockets'],
-      features: [
-        'Progressive Discovery with real-time updates',
-        'Multiple scan profiles (Quick, Deep, Security)',
-        'Industrial UI with neutral grey palette',
-        'Ultra-lightweight zero-animation architecture',
-        'Live WebSockets for low-latency data streaming',
-        'Advanced vulnerability scanning using Nmap scripts'
-      ],
-      github: 'https://github.com/LEADRACER/NetVision.git',
-      stars: 0,
-      language: 'JavaScript',
-      lastUpdated: '2026-04-24',
-      requirements: ['Python 3.8+', 'Node.js 18+', 'Nmap'],
-      installation: 'Clone repository and run sudo ./run.sh'
+  const handleBuildClick = useCallback((build) => {
+    setSelectedBuild(build)
+  }, [])
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedBuild(null)
+  }, [])
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        handleCloseModal()
+      }
     }
-  ]
+
+    if (selectedBuild) {
+      document.addEventListener('keydown', handleEscape)
+      return () => document.removeEventListener('keydown', handleEscape)
+    }
+  }, [selectedBuild, handleCloseModal])
+
+   const builds = [
+     {
+       id: 'netvision',
+       name: 'NetVision',
+       version: 'v4.3.0',
+       releaseTag: 'v4.3.0',
+       releaseUrl: 'https://github.com/LEADRACER/NetVision/releases/tag/v4.3.0',
+       description: 'Real-time Network Intelligence & Discovery Dashboard - A high-performance network mapping tool designed for instant visibility and security awareness.',
+       longDescription: 'NetVision is a high-performance, industrial-grade network mapping tool designed for instant visibility and security awareness. Built with a FastAPI backend and a React frontend, it provides a seamless, ultra-lightweight experience for discovering devices, services, and vulnerabilities on your local network.',
+       techStack: ['Python', 'FastAPI', 'React', 'Nmap', 'WebSockets', 'Scapy'],
+       features: [
+         'Progressive Discovery with real-time updates',
+         'Multiple scan profiles (Quick, Deep, Security)',
+         'Industrial UI with neutral grey palette',
+         'Ultra-lightweight zero-animation architecture',
+         'Live WebSockets for low-latency data streaming',
+         'Advanced vulnerability scanning using Nmap scripts',
+         'Multi-subnet scanning (ALL SUBNETS mode)',
+         'Configurable scan durations (30s, 1min)',
+         'Hop-based router discovery (experimental)'
+       ],
+       github: 'https://github.com/LEADRACER/NetVision',
+       stars: 0,
+       language: 'JavaScript',
+       lastUpdated: '2026-04-24',
+       requirements: ['Python 3.8+', 'Node.js 18+', 'Nmap', 'Tshark'],
+       installation: 'Clone repository and run sudo ./run.sh',
+       releaseDate: '2026-04-25',
+       releaseNotes: `# 🌐 NetVision v4.3.0 — Multi-Subnet & Hop-Based Scanning
+
+## 🚀 What's New
+This major update adds **multi-subnet scanning**, **configurable scan durations**, and experimental **hop-based router discovery** to NetVision.
+
+### 🌐 Multi-Subnet Scanning
+- ALL SUBNETS Mode: One-click scanning of 5 common private /24 networks
+- Custom Target Input with CIDR notation support
+- Live Subnet Indicator in sidebar
+- Sequential scanning with consolidated results
+
+### ⏱️ Configurable Scan Duration
+- Choose between Unlimited, 30 seconds, or 1 minute
+- Automatic Nmap timeout adjustment
+
+### 🛣️ Hop-Based Router Scanning (Experimental)
+- ICMP traceroute to discover router hops
+- Auto-discovers local /24 subnets along path
+- Devices tagged with hop_count
+
+### 🎨 UI/UX Enhancements
+- Sticky sidebar with live statistics
+- Animated scan progress bar
+- Improved device cards with port badges
+- Enhanced details overlay (480px width)`
+     }
+   ]
 
   return (
     <BuildsContainer>
       <Section>
         <SectionHeader>
           <Label>Builds & Tools</Label>
-          <Title>My Open Source Projects</Title>
+          <Title>Open Source Projects</Title>
           <Description>
-            Cybersecurity tools and network utilities built for security professionals and enthusiasts.
+            Cybersecurity tools and network utilities built for security professionals and enthusiasts. Open source, production-ready, and actively maintained.
           </Description>
         </SectionHeader>
 
@@ -57,26 +112,37 @@ export const Builds = () => {
           {builds.map((build) => (
             <BuildCard
               key={build.id}
-              onClick={() => setSelectedBuild(build)}
+              onClick={() => handleBuildClick(build)}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.2 }}
             >
               <BuildHeader>
                 <BuildIcon>
                   <Network size={24} />
                 </BuildIcon>
                 <BuildInfo>
-                  <BuildName>{build.name}</BuildName>
-                  <BuildVersion>{build.version}</BuildVersion>
+                  <BuildNameRow>
+                    <BuildName>{build.name}</BuildName>
+                    <VersionBadge>{build.version}</VersionBadge>
+                  </BuildNameRow>
+                  <BuildMetaRow>
+                    <MetaItem>
+                      <GitBranch size={12} />
+                      <span>{build.language}</span>
+                    </MetaItem>
+                    <MetaItem>
+                      <Star size={12} />
+                      <span>{build.stars} stars</span>
+                    </MetaItem>
+                    <MetaItem>
+                      <Zap size={12} />
+                      <span>Updated {build.lastUpdated}</span>
+                    </MetaItem>
+                  </BuildMetaRow>
                 </BuildInfo>
-                <BuildMeta>
-                  <MetaItem>
-                    <Star size={14} />
-                    <span>{build.stars}</span>
-                  </MetaItem>
-                  <MetaItem>
-                    <Code size={14} />
-                    <span>{build.language}</span>
-                  </MetaItem>
-                </BuildMeta>
+                <DownloadArrow>
+                  <Download size={20} />
+                </DownloadArrow>
               </BuildHeader>
 
               <BuildDescription>
@@ -88,111 +154,120 @@ export const Builds = () => {
                   <TechBadge key={tech}>{tech}</TechBadge>
                 ))}
               </BuildTechStack>
-
-              <BuildActions>
-                <ActionButton
-                  as="a"
-                  href={build.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="secondary"
-                >
-                  <GitBranch size={16} />
-                  Source
-                </ActionButton>
-                <ActionButton
-                  as="a"
-                  href={`${build.github}/releases`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="primary"
-                >
-                  <Download size={16} />
-                  Download
-                </ActionButton>
-              </BuildActions>
             </BuildCard>
           ))}
         </BuildsGrid>
       </Section>
 
-      {selectedBuild && (
-        <Modal onClick={() => setSelectedBuild(null)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <ModalHeader>
-              <ModalIcon>
-                <Network size={32} />
-              </ModalIcon>
-              <ModalTitle>{selectedBuild.name}</ModalTitle>
-              <ModalVersion>{selectedBuild.version}</ModalVersion>
-              <CloseButton onClick={() => setSelectedBuild(null)}>×</CloseButton>
-            </ModalHeader>
+      <AnimatePresence>
+        {selectedBuild && (
+          <Modal
+            onClick={handleCloseModal}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ModalContent onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="modal-title">
+              <ModalHeader>
+                <ModalIcon>
+                  <Network size={32} />
+                </ModalIcon>
+                <ModalTitleArea>
+                  <ModalTitle id="modal-title">{selectedBuild.name}</ModalTitle>
+                  <ModalVersion>Version {selectedBuild.version}</ModalVersion>
+                </ModalTitleArea>
+                <CloseButton onClick={handleCloseModal} aria-label="Close modal">×</CloseButton>
+              </ModalHeader>
 
-            <ModalBody>
-              <ModalSection>
-                <ModalSectionTitle>Overview</ModalSectionTitle>
-                <ModalDescription>{selectedBuild.longDescription}</ModalDescription>
-              </ModalSection>
+              <ModalBody>
+                <ModalSection>
+                  <ModalSectionTitle>Overview</ModalSectionTitle>
+                  <ModalDescription>{selectedBuild.longDescription}</ModalDescription>
+                </ModalSection>
 
-              <ModalSection>
-                <ModalSectionTitle>Key Features</ModalSectionTitle>
-                <FeatureList>
-                  {selectedBuild.features.map((feature, index) => (
-                    <FeatureItem key={index}>
-                      <Shield size={16} />
-                      <span>{feature}</span>
-                    </FeatureItem>
-                  ))}
-                </FeatureList>
-              </ModalSection>
+                <ModalSection>
+                  <ModalSectionTitle>Key Features</ModalSectionTitle>
+                  <FeatureList>
+                    {selectedBuild.features.map((feature, index) => (
+                      <FeatureItem key={index}>
+                        <Shield size={16} />
+                        <span>{feature}</span>
+                      </FeatureItem>
+                    ))}
+                  </FeatureList>
+                </ModalSection>
 
-              <ModalSection>
-                <ModalSectionTitle>Requirements</ModalSectionTitle>
-                <RequirementList>
-                  {selectedBuild.requirements.map((req, index) => (
-                    <RequirementItem key={index}>
-                      <span>• {req}</span>
-                    </RequirementItem>
-                  ))}
-                </RequirementList>
-              </ModalSection>
+                <ModalSection>
+                  <ModalSectionTitle>Requirements</ModalSectionTitle>
+                  <RequirementList>
+                    {selectedBuild.requirements.map((req, index) => (
+                      <RequirementItem key={index}>
+                        <span>• {req}</span>
+                      </RequirementItem>
+                    ))}
+                  </RequirementList>
+                </ModalSection>
 
-              <ModalSection>
-                <ModalSectionTitle>Installation</ModalSectionTitle>
-                <InstallationCode>
-                  <code>{selectedBuild.installation}</code>
-                </InstallationCode>
-              </ModalSection>
-            </ModalBody>
+                <ModalSection>
+                  <ModalSectionTitle>Quick Install</ModalSectionTitle>
+                  <InstallationCode>
+                    <code>{selectedBuild.installation}</code>
+                  </InstallationCode>
+                </ModalSection>
 
-            <ModalFooter>
-              <ActionButton
-                as="a"
-                href={selectedBuild.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="secondary"
-              >
-                <GitBranch size={16} />
-                View Repository
-              </ActionButton>
-              <ActionButton
-                as="a"
-                href={`${selectedBuild.github}/releases`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="primary"
-              >
-                <Download size={16} />
-                Get Latest Release
-              </ActionButton>
-            </ModalFooter>
+                <ModalSection>
+                  <ModalSectionTitle>Release Details</ModalSectionTitle>
+                  <ReleaseInfo>
+                    <ReleaseMeta>
+                      <ReleaseDate>
+                        <Calendar size={16} />
+                        <span>Released: {selectedBuild.releaseDate || '2026-04-25'}</span>
+                      </ReleaseDate>
+                      <ReleaseTag>
+                        <Tag size={16} />
+                        <span>Tag: {selectedBuild.releaseTag || 'v4.3.0'}</span>
+                      </ReleaseTag>
+                    </ReleaseMeta>
+                    <ReleaseNotesSection>
+                      <ReleaseNotesTitle>Release Notes</ReleaseNotesTitle>
+                      <ReleaseNotesContent>
+                        {selectedBuild.releaseNotes || `This release includes important updates and improvements to the project. Check the full release page for changelog details.`}
+                      </ReleaseNotesContent>
+                    </ReleaseNotesSection>
+                  </ReleaseInfo>
+                </ModalSection>
+              </ModalBody>
+
+              <ModalFooter>
+                <ActionButton
+                  as="a"
+                  href={selectedBuild.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="secondary"
+                >
+                  <GitBranch size={16} />
+                  View Source
+                </ActionButton>
+                <ActionButton
+                  as="a"
+                  href={selectedBuild.releaseUrl || `${selectedBuild.github}/releases`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="primary"
+                >
+                  <Download size={16} />
+                  Get Release {selectedBuild.version}
+                </ActionButton>
+              </ModalFooter>
           </ModalContent>
         </Modal>
-      )}
+        )}
+      </AnimatePresence>
     </BuildsContainer>
   )
-}
+})
 
 const BuildsContainer = styled.div`
   min-height: 100vh;
@@ -242,6 +317,11 @@ const BuildsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `
 
 const BuildCard = styled(Card)`
@@ -251,6 +331,7 @@ const BuildCard = styled(Card)`
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: ${theme.colors.bgElevated};
   }
 `
 
@@ -335,6 +416,10 @@ const TechBadge = styled.span`
 const BuildActions = styled.div`
   display: flex;
   gap: 0.75rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `
 
 const ActionButton = styled(Button)`
@@ -342,7 +427,7 @@ const ActionButton = styled(Button)`
   justify-content: center;
 `
 
-const Modal = styled.div`
+const Modal = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -500,4 +585,132 @@ const ModalFooter = styled.div`
   gap: 1rem;
   justify-content: flex-end;
   background: ${theme.colors.grey900}; /* Using darker background */
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding: 1rem;
+  }
+`
+
+const BuildNameRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+`
+
+const BuildMetaRow = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+`
+
+const DownloadArrow = styled.div`
+  color: ${theme.colors.accentCyan};
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.2s ease;
+  
+  ${BuildCard}:hover & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`
+
+const VersionBadge = styled.span`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(0, 180, 160, 0.15);
+  color: ${theme.colors.accentCyan};
+  border-radius: 4px;
+  border: 1px solid rgba(0, 180, 160, 0.3);
+  letter-spacing: 0.5px;
+`
+
+const ModalTitleArea = styled.div`
+  flex: 1;
+`
+
+const ReleaseInfo = styled.div`
+  background: rgba(0, 180, 160, 0.05);
+  border: 1px solid rgba(0, 180, 160, 0.2);
+  border-radius: 4px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+`
+
+const ReleaseMeta = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid ${theme.colors.borderSubtle};
+`
+
+const ReleaseDate = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.8rem;
+  color: ${theme.colors.textSecondary};
+  
+  svg {
+    color: ${theme.colors.accentCyan};
+  }
+`
+
+const ReleaseTag = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.8rem;
+  color: ${theme.colors.textSecondary};
+  
+  svg {
+    color: ${theme.colors.accentGreen};
+  }
+`
+
+const ReleaseNotesSection = styled.div``
+
+const ReleaseNotesTitle = styled.h4`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: ${theme.colors.textPrimary};
+  margin-bottom: 0.75rem;
+`
+
+const ReleaseNotesContent = styled.div`
+  color: ${theme.colors.textSecondary};
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-height: 200px;
+  overflow-y: auto;
+  
+  h1, h2, h3, h4 {
+    font-family: ${theme.fonts.mono};
+    color: ${theme.colors.textPrimary};
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  code, pre {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    background: ${theme.colors.bgDeep};
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+  }
+  
+  pre {
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 0.75rem 0;
+  }
 `
