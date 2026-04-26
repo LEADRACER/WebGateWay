@@ -656,47 +656,6 @@ const ModalFooter = styled.div`
   }
 `
 
-const BuildNameRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.25rem;
-`
-
-const BuildMetaRow = styled.div`
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  flex-wrap: wrap;
-`
-
-const DownloadArrow = styled.div`
-  color: var(--accentCyan);
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.2s ease;
-
-  ${BuildCard}:hover & {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`
-
-const VersionBadge = styled.span`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.7rem;
-  padding: 0.25rem 0.6rem;
-  background: rgba(0, 212, 170, 0.15);
-  color: var(--accentCyan);
-  border-radius: 6px;
-  border: 1px solid rgba(0, 212, 170, 0.3);
-  letter-spacing: 0.5px;
-`
-
-const ModalTitleArea = styled.div`
-  flex: 1;
-`
-
 const ReleaseInfo = styled.div`
   background: rgba(0, 212, 170, 0.08);
   border: 1px solid rgba(0, 212, 170, 0.25);
