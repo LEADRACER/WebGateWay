@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
@@ -7,13 +7,33 @@ import { ThemeToggle } from '../common/ThemeToggle'
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
+  const lastScrollY = useRef(0)
   const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY
+
+      // Set scrolled state for styling
+      setScrolled(currentScrollY > 50)
+
+      // Hide/show navbar based on scroll direction
+      if (currentScrollY > lastScrollY.current + 10) {
+        setIsHidden(true) // Scrolling down
+      } else if (currentScrollY < lastScrollY.current - 10) {
+        setIsHidden(false) // Scrolling up
+      }
+
+      // Always show navbar at the top of the page
+      if (currentScrollY <= 0) {
+        setIsHidden(false)
+      }
+
+      lastScrollY.current = currentScrollY
     }
-    window.addEventListener('scroll', handleScroll)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -28,7 +48,7 @@ export const Navbar = () => {
   ]
 
   return (
-    <Nav scrolled={scrolled}>
+    <Nav scrolled={scrolled} isHidden={isHidden}>
       <div className="nav-container">
         <NavLink to="/" className="logo">
           <div className="logo-block">
@@ -73,6 +93,7 @@ const Nav = styled.nav`
     ? `1px solid var(--borderSubtle)`
     : '1px solid rgba(58, 68, 80, 0.3)'
   };
+  transform: ${props => props.isHidden ? 'translateY(-100%)' : 'translateY(0)'};
 
   .nav-container {
     max-width: 1400px;
