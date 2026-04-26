@@ -201,53 +201,72 @@ const Badge = styled.div`
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
   background: var(--accentCyan-10);
-  border: 1px solid var(--accentCyan-30);
-  border-radius: 8px;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.8rem;
+  border: 1px solid var(--accentCyan-25);
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--accentCyan);
-  margin-bottom: 3rem;
-  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  box-shadow: 0 0 30px var(--accentCyan-10);
+  box-shadow: 0 4px 12px var(--accentCyan-15);
+  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 
   span {
-    width: 8px;
-    height: 8px;
-    background: #4ade80;
+    width: 6px;
+    height: 6px;
+    background: var(--accentGreen);
     border-radius: 50%;
-    box-shadow: 0 0 10px #4ade80;
+    box-shadow: 0 0 8px var(--accentGreen);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 
   &:hover {
-    box-shadow: 0 0 40px var(--accentCyan-20);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--accentCyan-20);
   }
 `
 
 const mH1 = styled(motion.h1)`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 4rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
   color: var(--textPrimary);
+  line-height: 1.1;
 
   span {
     color: var(--accentCyan);
-    text-shadow: 0 0 40px var(--glowCyan);
+    background: linear-gradient(135deg, var(--accentCyan), var(--accentBlue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px var(--glowCyan));
   }
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 `
 
 const mP = styled(motion.p)`
   color: var(--textSecondary);
-  max-width: 600px;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  line-height: 1.7;
+  max-width: 650px;
+  margin-bottom: 3rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 400;
 `
 
 const mDiv = styled(motion.div)`
@@ -255,37 +274,44 @@ const mDiv = styled(motion.div)`
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 `
 
 const StatsBar = styled.div`
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 3rem;
   margin-top: 4rem;
   flex-wrap: wrap;
-  padding: 2rem;
-  background: rgba(0, 212, 170, 0.06);
-  border: 1px solid var(--accentCyan-15);
-  border-radius: 12px;
-  backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  background: var(--bgElevated);
+  border: 1px solid var(--borderSubtle);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px var(--accentCyan-08);
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+    padding: 2rem;
+  }
 `
 
 const StatValue = styled.div`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 3rem;
-  font-weight: 900;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: var(--accentCyan);
   line-height: 1;
-  text-shadow: 0 0 25px var(--glowCyan);
+  filter: drop-shadow(0 0 15px var(--glowCyan));
+  margin-bottom: 0.5rem;
 `
 
 const StatLabel = styled.div`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.7rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--textMuted);
-  margin-top: 0.5rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 `
 
@@ -301,32 +327,41 @@ const SectionHeader = styled.div`
 `
 
 const Label = styled.span`
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.75rem;
+  font-weight: 600;
   color: var(--accentCyan);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   background: var(--accentCyan-08);
-  border: 1px solid var(--accentCyan-25);
-  border-radius: 6px;
+  border: 1px solid var(--accentCyan-20);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
 `
 
 const Title = styled.h2`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   color: var(--textPrimary);
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2.25rem;
+  }
 `
 
 const Description = styled.p`
   color: var(--textSecondary);
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
-  font-size: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 400;
 `
 
 const CardsGrid = styled.div`
@@ -339,24 +374,34 @@ const ProjectMeta = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--borderSubtle);
 `
 
 const TechStack = styled.div`
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.75rem;
+  font-weight: 500;
   color: var(--accentCyan);
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  background: var(--accentCyan-08);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--accentCyan-15);
 `
 
 const ProjectStatus = styled.div`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.7rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--textMuted);
   text-transform: uppercase;
   letter-spacing: 1px;
+  background: var(--bgElevated);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--borderSubtle);
 `
 
 const animations = `

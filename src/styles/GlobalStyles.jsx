@@ -52,25 +52,25 @@ export const GlobalStyles = createGlobalStyle`
       --grey300: ${darkTheme.colors.grey300};
       --grey200: ${darkTheme.colors.grey200};
       --grey100: ${darkTheme.colors.grey100};
-      --accentCyan-05: rgba(32, 216, 192, 0.05);
-      --accentCyan-08: rgba(32, 216, 192, 0.08);
-      --accentCyan-10: rgba(32, 216, 192, 0.1);
-      --accentCyan-12: rgba(32, 216, 192, 0.12);
-      --accentCyan-15: rgba(32, 216, 192, 0.15);
-      --accentCyan-18: rgba(32, 216, 192, 0.18);
-      --accentCyan-20: rgba(32, 216, 192, 0.2);
-      --accentCyan-25: rgba(32, 216, 192, 0.25);
-      --accentCyan-30: rgba(32, 216, 192, 0.3);
-      --accentCyan-dim: rgba(24, 168, 148, 0.25);
-      --accentBlue-10: rgba(90, 138, 114, 0.1);
-      --accentBlue-12: rgba(90, 138, 114, 0.12);
-      --accentBlue-15: rgba(90, 138, 114, 0.15);
-      --glowCyan-strong: rgba(32, 216, 192, 0.3);
-      --glowCyan-soft: rgba(32, 216, 192, 0.15);
-      --bgSecondary-alpha: rgba(26, 46, 38, 0.95);
-      --bgCard-alpha: rgba(35, 56, 48, 0.95);
-      --borderSubtle-alpha: rgba(58, 92, 72, 0.3);
-      --textPrimary-alpha: rgba(232, 245, 240, 0.8);
+      --accentCyan-05: rgba(0, 212, 255, 0.05);
+      --accentCyan-08: rgba(0, 212, 255, 0.08);
+      --accentCyan-10: rgba(0, 212, 255, 0.1);
+      --accentCyan-12: rgba(0, 212, 255, 0.12);
+      --accentCyan-15: rgba(0, 212, 255, 0.15);
+      --accentCyan-18: rgba(0, 212, 255, 0.18);
+      --accentCyan-20: rgba(0, 212, 255, 0.2);
+      --accentCyan-25: rgba(0, 212, 255, 0.25);
+      --accentCyan-30: rgba(0, 212, 255, 0.3);
+      --accentCyan-dim: rgba(8, 145, 178, 0.25);
+      --accentBlue-10: rgba(59, 130, 246, 0.1);
+      --accentBlue-12: rgba(59, 130, 246, 0.12);
+      --accentBlue-15: rgba(59, 130, 246, 0.15);
+      --glowCyan-strong: rgba(0, 212, 255, 0.3);
+      --glowCyan-soft: rgba(0, 212, 255, 0.15);
+      --bgSecondary-alpha: rgba(26, 31, 46, 0.95);
+      --bgCard-alpha: rgba(35, 39, 56, 0.95);
+      --borderSubtle-alpha: rgba(55, 65, 81, 0.3);
+      --textPrimary-alpha: rgba(241, 245, 249, 0.8);
     }
 
     &[data-theme="light"] {
@@ -104,25 +104,25 @@ export const GlobalStyles = createGlobalStyle`
       --grey300: ${lightTheme.colors.grey300};
       --grey200: ${lightTheme.colors.grey200};
       --grey100: ${lightTheme.colors.grey100};
-      --accentCyan-05: rgba(0, 160, 128, 0.05);
-      --accentCyan-08: rgba(0, 160, 128, 0.08);
-      --accentCyan-10: rgba(0, 160, 128, 0.1);
-      --accentCyan-12: rgba(0, 160, 128, 0.12);
-      --accentCyan-15: rgba(0, 160, 128, 0.15);
-      --accentCyan-18: rgba(0, 160, 128, 0.18);
-      --accentCyan-20: rgba(0, 160, 128, 0.2);
-      --accentCyan-25: rgba(0, 160, 128, 0.25);
-      --accentCyan-30: rgba(0, 160, 128, 0.3);
-      --accentCyan-dim: rgba(0, 133, 112, 0.25);
-      --accentBlue-10: rgba(90, 138, 114, 0.1);
-      --accentBlue-12: rgba(90, 138, 114, 0.12);
-      --accentBlue-15: rgba(90, 138, 114, 0.15);
-      --glowCyan-strong: rgba(0, 160, 128, 0.3);
-      --glowCyan-soft: rgba(0, 160, 128, 0.15);
-      --bgSecondary-alpha: rgba(245, 251, 248, 0.95);
+      --accentCyan-05: rgba(0, 212, 255, 0.05);
+      --accentCyan-08: rgba(0, 212, 255, 0.08);
+      --accentCyan-10: rgba(0, 212, 255, 0.1);
+      --accentCyan-12: rgba(0, 212, 255, 0.12);
+      --accentCyan-15: rgba(0, 212, 255, 0.15);
+      --accentCyan-18: rgba(0, 212, 255, 0.18);
+      --accentCyan-20: rgba(0, 212, 255, 0.2);
+      --accentCyan-25: rgba(0, 212, 255, 0.25);
+      --accentCyan-30: rgba(0, 212, 255, 0.3);
+      --accentCyan-dim: rgba(8, 145, 178, 0.25);
+      --accentBlue-10: rgba(37, 99, 235, 0.1);
+      --accentBlue-12: rgba(37, 99, 235, 0.12);
+      --accentBlue-15: rgba(37, 99, 235, 0.15);
+      --glowCyan-strong: rgba(0, 212, 255, 0.3);
+      --glowCyan-soft: rgba(0, 212, 255, 0.15);
+      --bgSecondary-alpha: rgba(241, 245, 249, 0.95);
       --bgCard-alpha: rgba(255, 255, 255, 0.95);
-      --borderSubtle-alpha: rgba(212, 232, 226, 0.3);
-      --textPrimary-alpha: rgba(26, 61, 51, 0.8);
+      --borderSubtle-alpha: rgba(203, 213, 225, 0.3);
+      --textPrimary-alpha: rgba(15, 23, 42, 0.8);
     }
   }
 

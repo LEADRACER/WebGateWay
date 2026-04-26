@@ -25,7 +25,7 @@ export const GridBackground = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // Draw main grid with accent blue
-      ctx.strokeStyle = 'rgba(107, 140, 174, 0.15)'
+      ctx.strokeStyle = 'rgba(59, 130, 246, 0.12)'
       ctx.lineWidth = 1
       const gridSize = 60
 
@@ -47,7 +47,7 @@ export const GridBackground = () => {
       const scanY = (timeRef.current * 0.5) % canvas.height
       const gradient = ctx.createLinearGradient(0, scanY - 50, 0, scanY + 50)
       gradient.addColorStop(0, 'transparent')
-      gradient.addColorStop(0.5, 'rgba(0, 212, 170, 0.25)')
+      gradient.addColorStop(0.5, 'rgba(0, 212, 255, 0.2)')
       gradient.addColorStop(1, 'transparent')
 
       ctx.strokeStyle = gradient
@@ -66,7 +66,7 @@ export const GridBackground = () => {
 
         ctx.beginPath()
         ctx.arc(x, y, Math.max(0.5, radius), 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(0, 212, 170, 0.2)'
+        ctx.fillStyle = 'rgba(0, 212, 255, 0.18)'
         ctx.fill()
       }
 

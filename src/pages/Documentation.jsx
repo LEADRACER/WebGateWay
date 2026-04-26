@@ -195,32 +195,41 @@ const SectionHeader = styled.div`
 `
 
 const Label = styled.span`
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.75rem;
+  font-weight: 600;
   color: var(--accentCyan);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   background: var(--accentCyan-08);
-  border: 1px solid var(--accentCyan-25);
-  border-radius: 6px;
+  border: 1px solid var(--accentCyan-20);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
 `
 
 const Title = styled.h2`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   color: var(--textPrimary);
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2.25rem;
+  }
 `
 
 const Description = styled.p`
   color: var(--textSecondary);
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
-  font-size: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 400;
 `
 
 const CategoryTabs = styled.div`
@@ -232,39 +241,51 @@ const CategoryTabs = styled.div`
 `
 
 const CategoryTab = styled.button`
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 0.75rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.875rem 1.5rem;
   background: ${props => props.active
-    ? 'var(--accentCyan-12)'
-    : 'transparent'
+    ? 'linear-gradient(135deg, var(--accentCyan-15), var(--accentCyan-10))'
+    : 'var(--bgElevated)'
   };
   color: ${props => props.active
     ? 'var(--accentCyan)'
     : 'var(--textSecondary)'
   };
   border: 1px solid ${props => props.active
-    ? 'var(--accentCyan-30)'
+    ? 'var(--accentCyan-25)'
     : 'var(--borderSubtle)'
   };
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
   &:hover {
     border-color: var(--accentCyan);
     color: var(--accentCyan);
-    background: var(--accentCyan-08);
+    background: ${props => props.active
+      ? 'linear-gradient(135deg, var(--accentCyan-18), var(--accentCyan-12))'
+      : 'var(--accentCyan-05)'
+    };
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--glowCyan);
   }
 `
 
 const TabCount = styled.span`
-  margin-left: 0.5rem;
+  background: var(--bgDeep);
   color: var(--textMuted);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--borderSubtle);
 `
 
 const DocsGrid = styled.div`
@@ -305,28 +326,37 @@ const DocContent = styled.div`
 
 const DocTag = styled.span`
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: var(--accentCyan-12);
+  padding: 0.375rem 0.875rem;
+  background: linear-gradient(135deg, var(--accentCyan-12), var(--accentCyan-08));
   color: var(--accentCyan);
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   align-self: flex-start;
-  border: 1px solid var(--accentCyan-25);
-  border-radius: 6px;
+  border: 1px solid var(--accentCyan-20);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
 `
 
 const DocMeta = styled.div`
   display: flex;
   justify-content: space-between;
   color: var(--textMuted);
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
   margin-top: auto;
-  padding-top: 1rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--borderSubtle);
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
 `
 
 const CardsGrid = styled.div`

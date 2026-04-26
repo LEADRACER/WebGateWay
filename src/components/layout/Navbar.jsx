@@ -117,42 +117,48 @@ const Logo = styled(NavLink)`
   text-decoration: none;
 
   .logo-block {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     background: linear-gradient(135deg, var(--accentCyan), var(--accentBlue));
     display: flex;
     align-items: center;
     justify-content: center;
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
-    border: 1px solid rgba(0, 212, 170, 0.2);
-    transition: all 0.3s ease;
+    border-radius: 12px;
+    border: 1px solid var(--accentCyan-25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px var(--glowCyan);
 
     &:hover {
       border-color: var(--accentCyan);
-      box-shadow: 0 0 30px var(--glowCyan);
+      box-shadow: 0 8px 24px var(--glowCyan);
+      transform: scale(1.05);
     }
 
     span {
       position: relative;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-weight: 900;
-      font-size: 1.2rem;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-weight: 700;
+      font-size: 1.25rem;
       color: var(--textPrimary);
-      text-shadow: 0 0 20px var(--glowCyan);
+      filter: drop-shadow(0 0 10px var(--glowCyan));
     }
   }
 
   .logo-text {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
     font-size: 1.5rem;
-    letter-spacing: 4px;
+    letter-spacing: 0.5px;
     color: var(--textPrimary);
-    text-transform: uppercase;
 
     span {
       color: var(--accentCyan);
-      text-shadow: 0 0 25px var(--glowCyan);
+      background: linear-gradient(135deg, var(--accentCyan), var(--accentBlue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 15px var(--glowCyan));
     }
   }
 `
@@ -178,64 +184,72 @@ const NavLinks = styled.div`
 const NavItem = styled(NavLink)`
   color: var(--textSecondary);
   text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  padding: 0.75rem 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
   position: relative;
-  transition: all 0.3s ease;
-  border: none;
-  background: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
   cursor: pointer;
 
   &::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 50%;
     width: 0;
-    height: 2px;
-    background: var(--accentCyan);
-    transition: width 0.3s ease;
-    transform: translateY(-50%);
+    height: 0;
+    background: var(--accentCyan-10);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translate(-50%, -50%);
   }
 
   &:hover {
     color: var(--accentCyan);
+    background: var(--accentCyan-05);
+    border-color: var(--accentCyan-20);
   }
 
   &:hover::before {
     width: 100%;
+    height: 100%;
   }
 
   &.active {
     color: var(--accentCyan);
+    background: var(--accentCyan-08);
+    border-color: var(--accentCyan-20);
   }
 
   &.active::before {
     width: 100%;
+    height: 100%;
   }
 `
 
 const MobileMenuBtn = styled.button`
   display: none;
-  background: transparent;
-  border: 1px solid var(--borderActive);
+  background: var(--bgElevated);
+  border: 1px solid var(--borderSubtle);
   color: var(--textPrimary);
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1rem;
   cursor: pointer;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
-  border-radius: 6px;
-  font-size: 1.5rem;
+  border-radius: 10px;
+  font-size: 1.25rem;
   line-height: 1;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 
   &:hover {
     border-color: var(--accentCyan);
     color: var(--accentCyan);
-    background: rgba(0, 212, 170, 0.08);
+    background: var(--accentCyan-05);
+    transform: scale(1.05);
   }
 
   @media (max-width: 768px) {
