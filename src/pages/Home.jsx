@@ -43,24 +43,24 @@ export const Home = () => {
     }
   }
 
-  const projects = [
-    {
-      icon: <Network />,
-      color: 'blue',
-      title: 'NetVision',
-      description: 'Real-time Network Intelligence & Discovery Dashboard - Advanced network mapping tool with FastAPI backend and React frontend.',
-      tech: 'Python • React • FastAPI',
-      status: 'Latest: v4.2'
-    },
-    {
-      icon: <Code />,
-      color: 'cyan',
-      title: 'Coming Soon',
-      description: 'More cybersecurity tools and utilities are in development. Stay tuned for updates.',
-      tech: 'TBA',
-      status: 'In Development'
-    }
-  ]
+   const projects = [
+     {
+       icon: <Network />,
+       color: 'blue',
+       title: 'NetVision',
+       description: 'Real-time Network Intelligence & Discovery Dashboard - Advanced network mapping tool with FastAPI backend and React frontend.',
+       tech: 'Python • React • FastAPI',
+       status: 'Latest: v4.3.0'
+     },
+     {
+       icon: <Code />,
+       color: 'cyan',
+       title: 'Coming Soon',
+       description: 'More cybersecurity tools and utilities are in development. Stay tuned for updates.',
+       tech: 'TBA',
+       status: 'In Development'
+     }
+   ]
 
   return (
     <HomeContainer>
@@ -201,45 +201,56 @@ const Badge = styled.div`
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(0, 229, 199, 0.08);
-  border: 1px solid rgba(0, 229, 199, 0.3);
-  border-radius: 4px;
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  border-radius: 8px;
   font-family: ${theme.fonts.mono};
   font-size: 0.8rem;
   color: ${theme.colors.accentCyan};
   margin-bottom: 3rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  animation: statusPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(0, 212, 170, 0.1);
+  transition: all 0.3s ease;
 
   span {
     width: 8px;
     height: 8px;
-    background: ${theme.colors.accentGreen};
+    background: #4ade80;
     border-radius: 50%;
-    animation: blink 1s ease-in-out infinite;
+    box-shadow: 0 0 10px #4ade80;
+  }
+
+  &:hover {
+    box-shadow: 0 0 40px rgba(0, 212, 170, 0.2);
   }
 `
 
 const StatsBar = styled.div`
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 4rem;
   margin-top: 4rem;
   flex-wrap: wrap;
+  padding: 2rem;
+  background: rgba(0, 212, 170, 0.06);
+  border: 1px solid rgba(0, 212, 170, 0.15);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
 `
 
 const StatValue = styled.div`
   font-family: ${theme.fonts.mono};
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 900;
   color: ${theme.colors.accentCyan};
   line-height: 1;
+  text-shadow: 0 0 25px rgba(0, 212, 170, 0.3);
 `
 
 const StatLabel = styled.div`
   font-family: ${theme.fonts.mono};
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: ${theme.colors.textMuted};
   margin-top: 0.5rem;
   letter-spacing: 2px;
@@ -266,9 +277,21 @@ const Label = styled.span`
   margin-bottom: 1.5rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(0, 229, 199, 0.05);
-  border: 1px solid rgba(0, 229, 199, 0.2);
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+  background: rgba(0, 212, 170, 0.08);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: 6px;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
+`
+
+const animations = `
+  @keyframes statusPulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(0, 212, 170, 0.2), 0 0 40px rgba(0, 212, 170, 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(0, 212, 170, 0.3), 0 0 60px rgba(0, 212, 170, 0.15);
+    }
+  }
 `
 
 const Title = styled.h2`
@@ -318,13 +341,12 @@ const ProjectStatus = styled.div`
 
 const animations = `
   @keyframes statusPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 199, 0.2); }
-    50% { box-shadow: 0 0 40px rgba(0, 229, 199, 0.4); }
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(0, 212, 170, 0.2), 0 0 40px rgba(0, 212, 170, 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(0, 212, 170, 0.3), 0 0 60px rgba(0, 212, 170, 0.15);
+    }
   }
 `
 

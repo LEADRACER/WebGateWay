@@ -204,9 +204,109 @@ const Label = styled.span`
   margin-bottom: 1.5rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(0, 229, 199, 0.05);
-  border: 1px solid rgba(0, 229, 199, 0.2);
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+  background: rgba(0, 212, 170, 0.08);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: 6px;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
+`
+
+const CategoryTab = styled.button`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  background: ${props => props.active
+    ? 'rgba(0, 212, 170, 0.12)'
+    : 'transparent'
+  };
+  color: ${props => props.active
+    ? theme.colors.accentCyan
+    : theme.colors.textSecondary
+  };
+  border: 1px solid ${props => props.active
+    ? 'rgba(0, 212, 170, 0.3)'
+    : theme.colors.borderSubtle
+  };
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
+
+  &:hover {
+    border-color: ${theme.colors.accentCyan};
+    color: ${theme.colors.accentCyan};
+    background: rgba(0, 212, 170, 0.08);
+  }
+`
+
+const TabCount = styled.span`
+  margin-left: 0.5rem;
+  color: ${theme.colors.textMuted};
+  font-size: 0.7rem;
+`
+
+const DocsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+`
+
+const DocCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+`
+
+const DocPreview = styled.div`
+  height: 160px;
+  background: linear-gradient(135deg, ${theme.colors.bgSecondary}, ${theme.colors.bgElevated});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin: -1.5rem -1.5rem 1rem -1.5rem;
+  padding: 1.5rem;
+  border-radius: 8px 8px 0 0;
+`
+
+const DocIcon = styled.div`
+  font-size: 3rem;
+  color: ${theme.colors.accentCyan};
+  z-index: 1;
+`
+
+const DocContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`
+
+const DocTag = styled.span`
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 212, 170, 0.12);
+  color: ${theme.colors.accentCyan};
+  font-family: ${theme.fonts.mono};
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: 6px;
+`
+
+const DocMeta = styled.div`
+  display: flex;
+  justify-content: space-between;
+  color: ${theme.colors.textMuted};
+  font-family: ${theme.fonts.mono};
+  font-size: 0.75rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid ${theme.colors.borderSubtle};
 `
 
 const Title = styled.h2`
@@ -240,7 +340,7 @@ const CategoryTab = styled.button`
   text-transform: uppercase;
   padding: 0.75rem 1.5rem;
   background: ${props => props.active
-    ? 'rgba(0, 180, 160, 0.1)' // Using darker cyan background
+    ? 'rgba(0, 212, 170, 0.12)'
     : 'transparent'
   };
   color: ${props => props.active
@@ -248,17 +348,18 @@ const CategoryTab = styled.button`
     : theme.colors.textSecondary
   };
   border: 1px solid ${props => props.active
-    ? 'rgba(0, 180, 160, 0.3)' // Using darker cyan border
+    ? 'rgba(0, 212, 170, 0.3)'
     : theme.colors.borderSubtle
   };
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
 
   &:hover {
     border-color: ${theme.colors.accentCyan};
     color: ${theme.colors.accentCyan};
+    background: rgba(0, 212, 170, 0.08);
   }
 `
 
@@ -306,7 +407,7 @@ const DocContent = styled.div`
 const DocTag = styled.span`
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: rgba(0, 180, 160, 0.1); // Using darker cyan background
+  background: rgba(0, 212, 170, 0.12);
   color: ${theme.colors.accentCyan};
   font-family: ${theme.fonts.mono};
   font-size: 0.7rem;
@@ -314,6 +415,7 @@ const DocTag = styled.span`
   text-transform: uppercase;
   margin-bottom: 1rem;
   align-self: flex-start;
+  border: 1px solid rgba(0, 212, 170, 0.25);
 `
 
 const DocMeta = styled.div`

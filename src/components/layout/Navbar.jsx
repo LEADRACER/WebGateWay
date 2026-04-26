@@ -62,13 +62,13 @@ const Nav = styled.nav`
   padding: 1rem 2rem;
   transition: all 0.4s ease;
   background: ${props => props.scrolled
-    ? 'rgba(0, 0, 0, 0.95)' // Using bgDeep with higher opacity
-    : 'rgba(0, 0, 0, 0.8)'
+    ? 'rgba(13, 17, 23, 0.95)' // Using bgDeep with opacity
+    : 'rgba(22, 27, 34, 0.9)'
   };
-  backdrop-filter: ${props => props.scrolled ? 'blur(20px)' : 'none'};
+  backdrop-filter: ${props => props.scrolled ? 'blur(20px)' : 'blur(10px)'};
   border-bottom: ${props => props.scrolled
     ? `1px solid ${theme.colors.borderSubtle}`
-    : 'none'
+    : '1px solid rgba(58, 68, 80, 0.3)'
   };
 
   .nav-container {
@@ -93,14 +93,21 @@ const Logo = styled(NavLink)`
     display: flex;
     align-items: center;
     justify-content: center;
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
+    border: 1px solid rgba(0, 212, 170, 0.2);
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: ${theme.colors.accentCyan};
+      box-shadow: 0 0 30px rgba(0, 212, 170, 0.2);
+    }
 
     span {
       position: relative;
       font-family: ${theme.fonts.mono};
       font-weight: 900;
       font-size: 1.2rem;
-      color: ${theme.colors.accentCyan};
+      color: ${theme.colors.textPrimary};
       text-shadow: 0 0 20px ${theme.colors.glowCyan};
     }
   }
@@ -115,6 +122,7 @@ const Logo = styled(NavLink)`
 
     span {
       color: ${theme.colors.accentCyan};
+      text-shadow: 0 0 25px ${theme.colors.glowCyan};
     }
   }
 `
@@ -129,7 +137,7 @@ const NavLinks = styled.div`
     top: 100%;
     left: 0;
     right: 0;
-    background: ${theme.colors.grey900}; /* Using darker grey for mobile menu */
+    background: ${theme.colors.grey800};
     border: 1px solid ${theme.colors.borderSubtle};
     border-top: none;
     flex-direction: column;
@@ -147,7 +155,7 @@ const NavItem = styled(NavLink)`
   letter-spacing: 1px;
   text-transform: uppercase;
   position: relative;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   border: none;
   background: none;
   cursor: pointer;
@@ -183,12 +191,22 @@ const NavItem = styled(NavLink)`
 
 const MobileMenuBtn = styled.button`
   display: none;
-  background: none;
+  background: transparent;
   border: 1px solid ${theme.colors.borderActive};
   color: ${theme.colors.textPrimary};
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
+  border-radius: 6px;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: ${theme.colors.accentCyan};
+    color: ${theme.colors.accentCyan};
+    background: rgba(0, 212, 170, 0.08);
+  }
 
   @media (max-width: 768px) {
     display: block;

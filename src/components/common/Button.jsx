@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export const Button = styled(motion.button)`
   padding: 1rem 2.5rem;
-  border-radius: 4px;
+  border-radius: 8px;
   font-family: ${theme.fonts.mono};
   font-size: 0.9rem;
   font-weight: 700;
@@ -37,11 +37,12 @@ export const Button = styled(motion.button)`
   &.primary {
     background: linear-gradient(135deg, ${theme.colors.accentCyan}, ${theme.colors.accentBlue});
     color: ${theme.colors.bgDeep};
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
+    box-shadow: 0 4px 20px rgba(0, 212, 170, 0.2);
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 40px ${theme.colors.glowCyan};
+      box-shadow: 0 12px 40px ${theme.colors.glowCyan};
     }
   }
 
@@ -49,12 +50,13 @@ export const Button = styled(motion.button)`
     background: transparent;
     color: ${theme.colors.textPrimary};
     border: 1px solid ${theme.colors.borderActive};
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
 
     &:hover {
       border-color: ${theme.colors.accentCyan};
       color: ${theme.colors.accentCyan};
-      background: rgba(0, 229, 199, 0.05);
+      background: rgba(0, 212, 170, 0.08);
+      box-shadow: 0 0 25px rgba(0, 212, 170, 0.15);
     }
   }
 `

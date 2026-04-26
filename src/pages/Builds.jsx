@@ -293,9 +293,10 @@ const Label = styled.span`
   margin-bottom: 1.5rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(0, 229, 199, 0.05);
-  border: 1px solid rgba(0, 229, 199, 0.2);
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+  background: rgba(0, 212, 170, 0.08);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: 6px;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%);
 `
 
 const Title = styled.h2`
@@ -329,9 +330,10 @@ const BuildCard = styled(Card)`
   transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
     background: ${theme.colors.bgElevated};
+    border-color: ${theme.colors.borderActive};
   }
 `
 
@@ -343,15 +345,23 @@ const BuildHeader = styled.div`
 `
 
 const BuildIcon = styled.div`
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  background: rgba(90, 108, 125, 0.1); /* Using darker blue background */
-  color: ${theme.colors.accentBlue};
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(0, 212, 170, 0.12);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  color: ${theme.colors.accentCyan};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+
+  ${BuildCard}:hover & {
+    background: rgba(0, 212, 170, 0.18);
+    border-color: ${theme.colors.accentCyan};
+    transform: scale(1.05);
+  }
 `
 
 const BuildInfo = styled.div`
@@ -406,11 +416,18 @@ const TechBadge = styled.span`
   font-family: ${theme.fonts.mono};
   font-size: 0.7rem;
   padding: 0.25rem 0.75rem;
-  background: rgba(0, 180, 160, 0.1); /* Using darker cyan background */
+  background: rgba(0, 212, 170, 0.12);
   color: ${theme.colors.accentCyan};
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 212, 170, 0.2);
   text-transform: uppercase;
   letter-spacing: 1px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 212, 170, 0.18);
+    border-color: ${theme.colors.accentCyan};
+  }
 `
 
 const BuildActions = styled.div`
@@ -433,12 +450,310 @@ const Modal = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9); /* Much darker background */
+  background: rgba(13, 17, 23, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 2rem;
+  backdrop-filter: blur(10px);
+`
+
+const ModalContent = styled.div`
+  background: ${theme.colors.bgSecondary};
+  border: 1px solid ${theme.colors.borderActive};
+  border-radius: 12px;
+  width: 100%;
+  max-width: 850px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+`
+
+const ModalHeader = styled.div`
+  padding: 2rem;
+  border-bottom: 1px solid ${theme.colors.borderSubtle};
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+  background: ${theme.colors.bgSecondary};
+  border-radius: 12px 12px 0 0;
+`
+
+const ModalIcon = styled.div`
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: rgba(0, 212, 170, 0.12);
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  color: ${theme.colors.accentCyan};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(0, 212, 170, 0.18);
+    border-color: ${theme.colors.accentCyan};
+    transform: scale(1.05);
+  }
+`
+
+const ModalTitleArea = styled.div`
+  flex: 1;
+`
+
+const ModalTitle = styled.h2`
+  font-family: ${theme.fonts.mono};
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: ${theme.colors.textPrimary};
+  margin: 0 0 0.25rem 0;
+`
+
+const ModalVersion = styled.div`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.85rem;
+  color: ${theme.colors.accentCyan};
+  letter-spacing: 1px;
+`
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: ${theme.colors.textMuted};
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: ${theme.colors.textPrimary};
+    background: ${theme.colors.borderSubtle};
+    transform: scale(1.1);
+  }
+`
+
+const ModalBody = styled.div`
+  padding: 2rem;
+  background: ${theme.colors.bgSecondary};
+`
+
+const ModalSection = styled.div`
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
+const ModalSectionTitle = styled.h3`
+  font-family: ${theme.fonts.mono};
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: ${theme.colors.textPrimary};
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+`
+
+const ModalDescription = styled.p`
+  color: ${theme.colors.textSecondary};
+  line-height: 1.7;
+  font-size: 0.95rem;
+`
+
+const FeatureList = styled.ul`
+  list-style: none;
+  padding: 0;
+`
+
+const FeatureItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: ${theme.colors.textSecondary};
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  svg {
+    color: ${theme.colors.accentCyan};
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+  }
+`
+
+const RequirementList = styled.ul`
+  list-style: none;
+  padding: 0;
+`
+
+const RequirementItem = styled.li`
+  margin-bottom: 0.5rem;
+  color: ${theme.colors.textSecondary};
+  font-size: 0.9rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid ${theme.colors.accentCyan};
+`
+
+const InstallationCode = styled.div`
+  background: ${theme.colors.bgDeep};
+  border: 1px solid ${theme.colors.borderSubtle};
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85rem;
+  color: ${theme.colors.accentCyan};
+  overflow-x: auto;
+`
+
+const ModalFooter = styled.div`
+  padding: 1.5rem 2rem;
+  border-top: 1px solid ${theme.colors.borderSubtle};
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  background: ${theme.colors.bgSecondary};
+  border-radius: 0 0 12px 12px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding: 1rem;
+  }
+`
+
+const BuildNameRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+`
+
+const BuildMetaRow = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+`
+
+const DownloadArrow = styled.div`
+  color: ${theme.colors.accentCyan};
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.2s ease;
+
+  ${BuildCard}:hover & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`
+
+const VersionBadge = styled.span`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(0, 212, 170, 0.15);
+  color: ${theme.colors.accentCyan};
+  border-radius: 6px;
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  letter-spacing: 0.5px;
+`
+
+const ModalTitleArea = styled.div`
+  flex: 1;
+`
+
+const ReleaseInfo = styled.div`
+  background: rgba(0, 212, 170, 0.08);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+`
+
+const ReleaseMeta = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid ${theme.colors.borderSubtle};
+`
+
+const ReleaseDate = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.8rem;
+  color: ${theme.colors.textSecondary};
+
+  svg {
+    color: ${theme.colors.accentCyan};
+  }
+`
+
+const ReleaseTag = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: ${theme.fonts.mono};
+  font-size: 0.8rem;
+  color: ${theme.colors.textSecondary};
+
+  svg {
+    color: ${theme.colors.accentGreen};
+  }
+`
+
+const ReleaseNotesSection = styled.div``
+
+const ReleaseNotesTitle = styled.h4`
+  font-family: ${theme.fonts.mono};
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: ${theme.colors.textPrimary};
+  margin-bottom: 0.75rem;
+`
+
+const ReleaseNotesContent = styled.div`
+  color: ${theme.colors.textSecondary};
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-height: 200px;
+  overflow-y: auto;
+
+  h1, h2, h3, h4 {
+    font-family: ${theme.fonts.mono};
+    color: ${theme.colors.textPrimary};
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  code, pre {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    background: ${theme.colors.bgDeep};
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+  }
+
+  pre {
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 0.75rem 0;
+  }
 `
 
 const ModalContent = styled.div`
@@ -466,12 +781,19 @@ const ModalIcon = styled.div`
   width: 64px;
   height: 64px;
   border-radius: 12px;
-  background: rgba(90, 108, 125, 0.1); /* Using darker blue background */
-  color: ${theme.colors.accentBlue};
+  background: rgba(0, 212, 170, 0.12);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  color: ${theme.colors.accentCyan};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(0, 212, 170, 0.18);
+    border-color: ${theme.colors.accentCyan};
+  }
 `
 
 const ModalTitle = styled.h2`
@@ -569,13 +891,15 @@ const RequirementItem = styled.li`
 `
 
 const InstallationCode = styled.div`
-  background: ${theme.colors.bgDeep}; /* Using bgDeep for terminal-like appearance */
+  background: ${theme.colors.bgDeep};
   border: 1px solid ${theme.colors.borderSubtle};
-  border-radius: 4px;
-  padding: 1rem;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
   font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
   font-size: 0.85rem;
   color: ${theme.colors.accentCyan};
+  overflow-x: auto;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
 `
 
 const ModalFooter = styled.div`
@@ -622,10 +946,10 @@ const VersionBadge = styled.span`
   font-family: ${theme.fonts.mono};
   font-size: 0.7rem;
   padding: 0.25rem 0.6rem;
-  background: rgba(0, 180, 160, 0.15);
+  background: rgba(0, 212, 170, 0.15);
   color: ${theme.colors.accentCyan};
-  border-radius: 4px;
-  border: 1px solid rgba(0, 180, 160, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 212, 170, 0.3);
   letter-spacing: 0.5px;
 `
 
@@ -634,9 +958,9 @@ const ModalTitleArea = styled.div`
 `
 
 const ReleaseInfo = styled.div`
-  background: rgba(0, 180, 160, 0.05);
-  border: 1px solid rgba(0, 180, 160, 0.2);
-  border-radius: 4px;
+  background: rgba(0, 212, 170, 0.08);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+  border-radius: 8px;
   padding: 1.25rem;
   margin-bottom: 1rem;
 `

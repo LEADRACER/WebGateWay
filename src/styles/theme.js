@@ -1,40 +1,43 @@
 export const theme = {
   colors: {
-    bgDeep: '#000000',
-    bgPrimary: '#0a0a0a',
-    bgSecondary: '#141414',
-    bgCard: '#1a1a1a',
-    bgElevated: '#202020',
-    borderSubtle: '#2a2a2a',
-    borderActive: '#404040',
-    textPrimary: '#f5f5f5',
-    textSecondary: '#b8b8b8',
-    textMuted: '#6b6b6b',
-    accentCyan: '#00b4a0',
-    accentCyanDim: '#008f7f',
-    accentBlue: '#5a6c7d',
-    accentBlueDim: '#475569',
-    accentOrange: '#8b5a2b',
-    accentOrangeDim: '#6d4421',
-    accentPurple: '#6b5b95',
-    accentPurpleDim: '#5a4d7c',
-    accentGreen: '#4a5d23',
-    glowCyan: 'rgba(0, 180, 160, 0.15)',
-    glowBlue: 'rgba(90, 108, 125, 0.15)',
-    // Additional grey shades for more monochromatic look
-    grey900: '#0f0f0f',
-    grey800: '#1f1f1f',
-    grey700: '#333333',
-    grey600: '#4d4d4d',
-    grey500: '#666666',
-    grey400: '#808080',
-    grey300: '#999999',
-    grey200: '#b3b3b3',
-    grey100: '#cccccc'
+    // Brighter, more nuanced dark theme - industrial steel & soft neon
+    bgDeep: '#0d1117',           // Deep steel blue-black
+    bgPrimary: '#161b22',        // Slightly lighter base
+    bgSecondary: '#21262d',      // Elevated surfaces
+    bgCard: '#2a313c',           // Card backgrounds
+    bgElevated: '#373e47',       // Hover/elevated states
+    borderSubtle: '#3a4450',     // Subtle borders
+    borderActive: '#5a6c7d',     // Active/focused borders
+    textPrimary: '#e6edf3',      // Soft white (less harsh)
+    textSecondary: '#9fb0c7',    // Muted blue-grey
+    textMuted: '#6b7280',        // Subdued text
+    // Accent colors - maintained but slightly softened
+    accentCyan: '#00d4aa',       // Vibrant cyan
+    accentCyanDim: '#00a088',    // Dimmed variant
+    accentBlue: '#6b8cae',       // Softer steel blue
+    accentBlueDim: '#4a6b87',    // Dimmed steel blue
+    accentOrange: '#c67c48',     // Warmer orange
+    accentOrangeDim: '#a06231',
+    accentPurple: '#8b7bb8',     // Soft purple
+    accentPurpleDim: '#6d5a99',
+    accentGreen: '#6b8e5a',      // Natural green
+    // Glow effects
+    glowCyan: 'rgba(0, 212, 170, 0.12)',
+    glowBlue: 'rgba(107, 140, 174, 0.12)',
+    // Grey scale for variations
+    grey900: '#161b22',
+    grey800: '#21262d',
+    grey700: '#303944',
+    grey600: '#4a5568',
+    grey500: '#6b7280',
+    grey400: '#9ca3af',
+    grey300: '#c4c8cc',
+    grey200: '#e2e4e8',
+    grey100: '#f7f8fa'
   },
   fonts: {
-    mono: "'Courier New', monospace",
-    sans: "'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    mono: "'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace",
+    sans: "'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
   },
   gridSize: '60px'
 }
