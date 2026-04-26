@@ -1,7 +1,8 @@
-export default function handler(req, res) {
-  res.status(200).json({ 
-    status: 'healthy', 
+export default function handler(request, response) {
+  response.status(200).json({
+    status: 'ok',
     timestamp: new Date().toISOString(),
-    service: 'CyberSentinals API'
+    service: 'CyberSentinals Frontend',
+    version: '1.0.0'
   });
 }

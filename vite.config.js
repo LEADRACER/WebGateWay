@@ -7,6 +7,18 @@ export default defineConfig({
     port: 3000,
     host: true
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['framer-motion', 'lucide-react', 'styled-components']
+        }
+      }
+    }
+  },
   test: {
     globals: true,
     environment: 'jsdom',
